@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/components/gradient_text.dart';
 import 'package:quizzes/app/modules/registeration/controllers/registeration_controller.dart';
+import 'package:quizzes/app/routes/app_pages.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -67,7 +69,9 @@ class LoginForm extends StatelessWidget {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(Routes.HOME);
+                },
                 style: ButtonStyle(
                   padding: MaterialStatePropertyAll(
                     EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),

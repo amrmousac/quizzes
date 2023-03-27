@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
 import 'package:quizzes/app/services/initial_bindings.dart';
-import 'package:quizzes/app/utils/themes.dart';
+import 'package:quizzes/app/utils/resources/theme_manager.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -26,7 +26,7 @@ class QuizzesApp extends StatelessWidget {
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         initialBinding: InitialBinding(),
-        theme: appTheme,
+        theme: getApplicationTheme(),
       );
     });
   }
