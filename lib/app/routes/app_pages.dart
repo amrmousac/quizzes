@@ -8,6 +8,8 @@ import '../modules/play/bindings/play_binding.dart';
 import '../modules/play/views/play_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/quize/bindings/quize_binding.dart';
+import '../modules/quize/views/quize_view.dart';
 import '../modules/registeration/bindings/registeration_binding.dart';
 import '../modules/registeration/views/registeration_view.dart';
 import '../modules/tournaments/bindings/tournaments_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUIZE,
+      page: () => const QuizeView(),
+      binding: QuizeBinding(),
     ),
   ];
 }

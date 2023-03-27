@@ -61,7 +61,7 @@ class DashboardDrawer extends StatelessWidget {
               const Divider(),
               GoToPage(
                 text: "Play",
-                routeName: Routes.HOME,
+                routeName: Routes.PLAY,
               ),
               const SizedBox(
                 height: space,
@@ -86,6 +86,10 @@ class DashboardDrawer extends StatelessWidget {
               ),
               const SizedBox(
                 height: space,
+              ),
+              GoToPage(
+                text: "Test",
+                routeName: Routes.QUIZE,
               ),
               Spacer(),
               GoToPage(

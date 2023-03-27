@@ -10,11 +10,21 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      child: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      child: Column(
+        children: [
+          ElevatedButton(
+            child: Text("go"),
+            onPressed: () {
+              controller.api.joinTournament();
+            },
+          ),
+          Center(
+            child: Text(
+              'HomeView is working ${controller.api.accessToken}',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -70,7 +70,7 @@ class LoginForm extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Get.toNamed(Routes.HOME);
+                  controller.login();
                 },
                 style: ButtonStyle(
                   padding: MaterialStatePropertyAll(

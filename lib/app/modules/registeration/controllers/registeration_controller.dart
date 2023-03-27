@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:quizzes/app/data/api.dart';
+import 'package:quizzes/app/routes/app_pages.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegisterationController extends GetxController {
+  final api = Get.find<GamificationAPI>();
   final form = FormGroup({
     // 'username': FormControl<String>(
     //   validators: [Validators.required],
@@ -30,5 +33,12 @@ class RegisterationController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> login() async {
+    final res = await api.login();
+    print("token sss: ${api.accessToken}");
+
+    if (res) {
+      Get.toNamed(Routes.PLAY);
+    }
+  }
 }

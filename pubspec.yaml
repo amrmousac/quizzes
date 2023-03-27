@@ -2,33 +2,38 @@ name: quizzes
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment:
+environment: 
   sdk: '>=2.17.0 <3.0.0'
 
-dependencies:
+dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
   responsive_builder: ^0.6.4
-  reactive_forms:
+  reactive_forms: any
   url_strategy: 0.2.0
-  flutter:
+  dio: 5.1.0
+  flutter_secure_storage: 8.0.0
+  responsive_grid: 2.2.0
+  lottie: 2.3.0
+  flutter: 
     sdk: flutter
-  flutter_localizations:
+  flutter_localizations: 
     sdk: flutter
 
-dev_dependencies:
+dev_dependencies: 
   flutter_lints: 2.0.1
-  flutter_test:
+  flutter_test: 
     sdk: flutter
 
-flutter:
-  uses-material-design: true
-  assets:
+flutter: 
+  assets: 
     - assets/images/
-
-  fonts:
+  fonts: 
     - family: Segoeui
-      fonts:
+      fonts: 
         - asset: assets/fonts/Segoe-UI-Font/SEGOEUI.TTF
-flutter_intl:
+  uses-material-design: true
+
+flutter_intl: 
   enabled: true
+
