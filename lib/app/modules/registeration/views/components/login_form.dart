@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GradientText(
-              "Welcome Admin!",
+              "Welcome!",
               style: TextStyle(
                 fontSize: 56,
                 fontWeight: FontWeight.bold,

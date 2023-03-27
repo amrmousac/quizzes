@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
+import 'package:quizzes/app/components/gradient_text.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
+import 'package:quizzes/app/utils/resources/font_manager.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -12,40 +15,86 @@ class DashboardDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double space = 16.0;
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      color: Theme.of(context).colorScheme.background,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
+    return SingleChildScrollView(
+      child: Container(
+        height: Get.height,
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+        ),
+        constraints: BoxConstraints(
+          maxWidth: 250,
+        ),
+        child: IntrinsicHeight(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              getValueForScreenType<bool>(
-                      context: context,
-                      mobile: true,
-                      tablet: false,
-                      desktop: false)
-                  ? IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                      ),
-                    )
-                  : Container(),
+              Row(
+                children: [
+                  getValueForScreenType<bool>(
+                          context: context,
+                          mobile: true,
+                          tablet: false,
+                          desktop: false)
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                            ),
+                          ),
+                        )
+                      : Container(),
+                  GradientText(
+                    "Quizzes",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: FontSize.s25,
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(),
+              GoToPage(
+                text: "Play",
+                routeName: Routes.HOME,
+              ),
+              const SizedBox(
+                height: space,
+              ),
+              GoToPage(
+                text: "tournaments",
+                routeName: Routes.TOURNAMENTS,
+              ),
+              const SizedBox(
+                height: space,
+              ),
+              GoToPage(
+                text: "Groups",
+                routeName: Routes.GROUPS,
+              ),
+              const SizedBox(
+                height: space,
+              ),
+              GoToPage(
+                text: "Profile",
+                routeName: Routes.PROFILE,
+              ),
+              const SizedBox(
+                height: space,
+              ),
+              Spacer(),
+              GoToPage(
+                text: "Logout",
+                routeName: Routes.REGISTERATION,
+              ),
             ],
           ),
-          const Divider(),
-          GoToPage(
-            text: "Play",
-            routeName: Routes.REGISTERATION,
-          ),
-          const SizedBox(
-            height: space,
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -58,7 +107,6 @@ class GoToPage extends StatelessWidget {
     this.params = const <String, String>{},
     this.queryParams = const <String, String>{},
     this.style,
-    this.textStyle,
     required this.routeName,
   }) : super(key: key);
 
@@ -67,10 +115,10 @@ class GoToPage extends StatelessWidget {
   final Map<String, String> params;
   final Map<String, String> queryParams;
   final ButtonStyle? style;
-  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
+    final isSelected = Get.currentRoute == routeName;
     var isTabletOrLess = getValueForScreenType(
       context: context,
       mobile: true,
@@ -78,7 +126,6 @@ class GoToPage extends StatelessWidget {
       watch: true,
       desktop: false,
     );
-    final theme = Theme.of(context);
 
     return TextButton(
       style: style,
@@ -86,10 +133,16 @@ class GoToPage extends StatelessWidget {
         if (isTabletOrLess) {
           Navigator.pop(context);
         }
+        Get.toNamed(routeName);
       },
       child: AppText(
         text,
-        style: textStyle,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: isSelected
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).textTheme.bodyMedium?.color,
+        ),
       ),
     );
   }

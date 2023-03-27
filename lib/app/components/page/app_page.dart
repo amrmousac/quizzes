@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizzes/app/components/gradient_text.dart';
 import 'package:quizzes/app/components/page/dashboard_drawer.dart';
+import 'package:quizzes/app/utils/resources/font_manager.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class AppPage extends StatelessWidget {
@@ -21,11 +23,22 @@ class AppPage extends StatelessWidget {
               child: Column(
             children: [
               if (isMobile)
-                IconButton(
-                  onPressed: () {
-                    _scaffoldkey.currentState?.openDrawer();
-                  },
-                  icon: const Icon(Icons.menu),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        _scaffoldkey.currentState?.openDrawer();
+                      },
+                      icon: const Icon(Icons.menu),
+                    ),
+                    GradientText(
+                      "Quizzes",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: FontSize.s25,
+                      ),
+                    ),
+                  ],
                 ),
               Expanded(
                 child: child,
