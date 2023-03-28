@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/registeration/views/components/login_form.dart';
+import 'package:quizzes/app/modules/registeration/views/components/signup_form.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../controllers/registeration_controller.dart';
 
@@ -58,8 +59,12 @@ class RegisterationView extends GetView<RegisterationController> {
                             SizedBox(
                               height: 16.0,
                             ),
-                            Expanded(
-                              child: LoginForm(controller: controller),
+                            Obx(
+                              () => Expanded(
+                                child: controller.isLogin.value
+                                    ? LoginForm(controller: controller)
+                                    : SignupForm(controller: controller),
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),

@@ -5,10 +5,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class RegisterationController extends GetxController {
   final api = Get.find<GamificationAPI>();
-  final form = FormGroup({
-    // 'username': FormControl<String>(
-    //   validators: [Validators.required],
-    // ),
+  final loginForm = FormGroup({
     'email': FormControl<String>(
       validators: [Validators.required],
     ),
@@ -17,7 +14,20 @@ class RegisterationController extends GetxController {
     ),
   });
 
-  final count = 0.obs;
+  final signupForm = FormGroup({
+    'username': FormControl<String>(
+      validators: [Validators.required],
+    ),
+    'email': FormControl<String>(
+      validators: [Validators.required],
+    ),
+    'password': FormControl<String>(
+      validators: [Validators.required],
+    ),
+  });
+  final errorMessage = ''.obs;
+  final isLogin = true.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -34,11 +44,24 @@ class RegisterationController extends GetxController {
   }
 
   Future<void> login() async {
-    final res = await api.login();
-    print("token sss: ${api.accessToken}");
-
-    if (res) {
+    final res = await api.registeration.login(
+        loginForm.control('email').value, loginForm.control('password').value);
+    if (res['status'] == 200) {
       Get.toNamed(Routes.PLAY);
+    } else {
+      errorMessage.value = res['message'];
+    }
+  }
+
+  Future<void> signup() async {
+    final res = await api.registeration.signup(
+        signupForm.control('username').value,
+        signupForm.control('email').value,
+        signupForm.control('password').value);
+    if (res['status'] == 200) {
+      Get.toNamed(Routes.PLAY);
+    } else {
+      errorMessage.value = res['message'];
     }
   }
 }

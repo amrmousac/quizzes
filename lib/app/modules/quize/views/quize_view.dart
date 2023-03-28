@@ -16,11 +16,7 @@ class QuizeView extends GetView<QuizeController> {
             title: Text("${controller.res.value}"),
             centerTitle: true,
           ),
-          body: ElevatedButton(
-              child: Text("test"),
-              onPressed: () async {
-                controller.res.value = await controller.api.login();
-              }),
+          body: ElevatedButton(child: Text("test"), onPressed: () async {}),
         ),
       ),
     );

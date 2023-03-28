@@ -20,7 +20,7 @@ class HomeView extends GetView<HomeController> {
           ),
           Center(
             child: Text(
-              'HomeView is working ${controller.api.accessToken}',
+              'HomeView is working',
               style: TextStyle(fontSize: 20),
             ),
           ),
