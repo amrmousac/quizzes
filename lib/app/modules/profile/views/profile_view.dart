@@ -12,9 +12,11 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return AppPage(
       child: Center(
-        child: Text(
-          'ProfileView is ${GamificationAPI.user?.email}',
-          style: TextStyle(fontSize: 20),
+        child: Obx(
+          () => Text(
+            'ProfileView is ${GamificationAPI.user.value?.email}',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );

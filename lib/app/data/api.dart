@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart' as getx;
+import 'package:get/get_rx/get_rx.dart';
 import 'package:quizzes/app/data/Registeration.dart';
 import 'package:quizzes/app/data/tournaments.dart';
 import 'package:quizzes/app/models/user.dart';
@@ -16,7 +17,7 @@ class GamificationAPI {
 
   static String? accessToken;
   static String? refreshToken;
-  static User? user;
+  static final user = Rx<User?>(null);
 
   final _storage = FlutterSecureStorage();
 
@@ -32,18 +33,15 @@ class GamificationAPI {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           options.headers["Authorization"] = "Bearer $accessToken";
-          options.headers['Access-Control-Allow-Origin'] = '*';
-          options.headers['Access-Control-Allow-Methods'] =
-              'GET, POST, OPTIONS, PUT, PATCH, DELETE';
-          options.headers['Access-Control-Allow-Headers'] =
-              'X-Requested-With,content-type';
-          options.headers['Access-Control-Allow-Credentials'] = true;
+          // options.headers['Access-Control-Allow-Origin'] = '*';
           return handler.next(options);
         },
+        onResponse: (response, handler) {
+          return handler.next(response);
+        },
         onError: (e, handler) async {
-          if (await _storage.containsKey(key: "refresh_token")) {
+          if (accessToken != null) {
             await tokenRefresh();
-            await registerationAPI.getCurrentUser();
             return handler.resolve(await _retry(e.requestOptions));
           }
           return handler.next(e);
@@ -69,13 +67,13 @@ class GamificationAPI {
         accessToken = response.data["token"];
         _storage.write(key: "token", value: accessToken);
         _storage.write(key: "refresh_token", value: refreshToken);
-        await registerationAPI.getCurrentUser();
       } else {
         accessToken = null;
         _storage.deleteAll();
         getx.Get.toNamed(Routes.REGISTERATION);
       }
-      print("token: $refreshToken");
+      print("refreshToken: $refreshToken");
+      print("token: $accessToken");
     } catch (e) {
       print(e.toString());
     }

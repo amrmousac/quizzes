@@ -67,7 +67,7 @@ class DashboardDrawer extends StatelessWidget {
                 height: space,
               ),
               GoToPage(
-                text: "tournaments",
+                text: "Tournaments",
                 routeName: Routes.TOURNAMENTS,
               ),
               const SizedBox(
@@ -86,10 +86,6 @@ class DashboardDrawer extends StatelessWidget {
               ),
               const SizedBox(
                 height: space,
-              ),
-              GoToPage(
-                text: "Quiz",
-                routeName: Routes.QUIZE,
               ),
               Spacer(),
               GoToPage(
@@ -137,7 +133,7 @@ class GoToPage extends StatelessWidget {
         if (isTabletOrLess) {
           Navigator.pop(context);
         }
-        Get.toNamed(routeName);
+        Get.offNamed(routeName);
       },
       child: AppText(
         text,

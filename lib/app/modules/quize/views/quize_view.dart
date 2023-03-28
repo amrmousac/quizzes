@@ -10,9 +10,9 @@ class QuizeView extends GetView<QuizeController> {
   const QuizeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AppPage(child: Center(child: QuizWidget()));
+    return AppPage(
+        child: QuizWidget(
+      controller: controller,
+    ));
   }
 }
-
-
-

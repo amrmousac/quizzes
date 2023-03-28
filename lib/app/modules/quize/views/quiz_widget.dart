@@ -1,160 +1,184 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quizzes/app/modules/quize/controllers/quize_controller.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 
-class QuizWidget extends StatefulWidget {
+class QuizWidget extends StatelessWidget {
+  final QuizeController controller;
+  const QuizWidget({super.key, required this.controller});
   @override
-  _QuizWidgetState createState() => _QuizWidgetState();
-}
-
-class _QuizWidgetState extends State<QuizWidget> {
-
-    var n = 0;
-    var score = 0;
-    List que =[
-      questions("1.My laptop is acer.", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", true),
-      questions("2.My mobile is vivo.", "https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBob25lfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", true),
-      questions("3.My bike is RC200.","https://images.unsplash.com/photo-1598209279122-8541213a0387?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmMyMDB8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", true),
-      questions("4.My car is Lambho.","https://images.unsplash.com/photo-1516515429572-bf32372f2409?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGxhbWJvfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", true),
-      questions("5. My favorite city is Paris","https://images.unsplash.com/photo-1569949380643-6e746ecaa3bd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHRvdXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", true),
-    ];
-
-    void check(bool choice, BuildContext ctx)
-    {
-      if(choice == que[n].ans)
-        {
-          score = score + 1;
-          final snackbar = SnackBar(content: Text('Correct Answer'),duration: Duration(milliseconds: 500),backgroundColor: Colors.green,);
-          
-            ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-        }
-      else{
-        final snackbar = SnackBar(content: Text('Wrong Answer'),duration: Duration(milliseconds: 500),backgroundColor: Colors.red,);
-
-        ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-      }
-      setState(() {
-        if(n<que.length-1)
-          {
-            n = n+1;
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+        Colors.blue.shade400,
+        Colors.blue.shade900,
+      ])),
+      child: Obx(
+        () {
+          if (controller.current.value == controller.questions.length) {
+            return Center(
+              child: Text(
+                "Score: ${controller.score.value}/5",
+                style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 56,
+                    fontWeight: FontWeight.w800),
+              ),
+            );
           }
-        else{
-          final snackbar = SnackBar(content: Text('Quiz Completed Score : $score/3 '),duration: Duration(seconds: 3),backgroundColor: Colors.lightBlueAccent,);
-          ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-          reset();
-        }
-      });
-    }
+          final quiz = controller.questions[controller.current.value];
 
-    void reset()
-    {
-      setState(() {
-        n = 0;
-        score = 0;
-      });
-    }
-
-    @override
-    Widget build(BuildContext context) {
-      return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xffE2F3F4),
-        body: Builder(
-          builder: (ctx) => Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.all(15),
-                child: Center(
-                  child: Container(
-                       decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                 // border: Border.all(color: Colors.blue.shade600,width: 3)
-                ),
-                      child: Expanded(child: Image.network(que[n].imgurl))),
-                ),
-              ),
-              //SizedBox(height: 15,),
-              Container(
-                margin: EdgeInsets.only(left: 15,right: 15),
-                height: 105.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color:Colors.cyan,width: 3)
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(que[n].que,style: TextStyle(fontSize: 16,color: Colors.black),)
-                  ],
-                ),
-              ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          return SingleChildScrollView(
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                
-
-                  Container(
-                    width: 100,
-                    height: 50,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 64.0, vertical: 16.0),
+                        margin: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
-                        color: Colors.greenAccent.shade700,
-                         borderRadius: BorderRadius.circular(25) 
-                         ),
-                     child: InkWell(
-                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                        child: Icon(Icons.check,color: Colors.black ,),
-                       //
-                        onTap:() => check(true, ctx),
-                    ),
-                   ),
-
+                          color: ColorManager.white,
+                          border: Border.all(color: Colors.cyan, width: 3),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "${controller.current.value + 1}",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 25, right: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                                onTap: () => controller.reset(),
+                                child: Text(
+                                  "Reset",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800),
+                                ))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                   Container(
-                    width: 100,
-                    height: 50,
+                    alignment: Alignment.topLeft,
+                    margin: EdgeInsets.all(15),
+                    child: Center(
+                      child: Container(
                         decoration: BoxDecoration(
-                        color:Colors.red.shade700,
-                         borderRadius: BorderRadius.circular(25) 
-                         ),
-                     child: InkWell(
-                        child: const Icon(Icons.close,color: Colors.black ,),
-                       
-                        onTap:() => check(false, ctx),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Image.network(
+                          quiz.imgurl,
+                        ),
+                        height: 200,
+                      ),
                     ),
-                   ),
+                  ),
+                  Center(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 64.0, vertical: 16.0),
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(color: Colors.cyan, width: 3)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            quiz.question,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.greenAccent.shade700,
+                          border: Border.all(color: Colors.cyan, width: 3),
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                          //
+                          onTap: () => controller.check(true, context),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 64.0,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade700,
+                          border: Border.all(color: Colors.cyan, width: 3),
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          child: const Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                          onTap: () => controller.check(false, context),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 35,
+                  ),
+                  Center(
+                    child: Text(
+                      "Score: ${controller.score.value}/5",
+                      style: TextStyle(
+                          color: Colors.yellow,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(height: 35,),
-              Container(
-                margin: EdgeInsets.only(left: 25,right: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Score: $score/5",style: TextStyle(color: Colors.blue.shade800,fontSize: 18,fontWeight: FontWeight.w800),),
-                    InkWell(
-                        onTap: () => reset(),
-                        child: Text("Reset",style: TextStyle(color: Colors.blue.shade800,fontSize: 18,fontWeight: FontWeight.w800),))
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 }
-
-class questions{
-  final String que;
-  final String imgurl;
-  final bool ans;
-
-  questions(this.que, this.imgurl, this.ans);
-
-}
-

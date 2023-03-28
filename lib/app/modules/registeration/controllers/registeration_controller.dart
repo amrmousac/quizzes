@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
@@ -7,11 +8,11 @@ class RegisterationController extends GetxController {
   final api = Get.find<GamificationAPI>();
   final loginForm = FormGroup({
     'email': FormControl<String>(
-      validators: [Validators.required],
-    ),
+        validators: [Validators.required],
+        value: kDebugMode ? 'user1@gmail.com' : null),
     'password': FormControl<String>(
-      validators: [Validators.required],
-    ),
+        validators: [Validators.required],
+        value: kDebugMode ? '1234qwer' : null),
   });
 
   final signupForm = FormGroup({
@@ -22,6 +23,9 @@ class RegisterationController extends GetxController {
       validators: [Validators.required],
     ),
     'password': FormControl<String>(
+      validators: [Validators.required],
+    ),
+    'confirmPassword': FormControl<String>(
       validators: [Validators.required],
     ),
   });

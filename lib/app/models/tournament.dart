@@ -35,14 +35,14 @@ class Tournament {
 
   int nextReset;
   Metadata metadata;
-  dynamic endTime;
+  int? endTime;
   String tournamentOperator;
   String description;
   int maxSize;
   int size;
   String title;
-  int sortOrder;
-  int prevReset;
+  int? sortOrder;
+  int? prevReset;
   int startTime;
   String id;
   int maxNumScore;

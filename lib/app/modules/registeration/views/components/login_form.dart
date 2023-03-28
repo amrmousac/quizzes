@@ -81,7 +81,9 @@ class LoginForm extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      if (controller.loginForm.valid) controller.login();
+                      if (controller.loginForm.valid) {
+                        controller.login();
+                      }
                     },
                     style: ButtonStyle(
                       padding: MaterialStatePropertyAll(

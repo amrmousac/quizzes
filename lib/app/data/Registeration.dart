@@ -21,11 +21,12 @@ class RegisterationAPI {
           }),
           queryParameters: {"create": false},
           data: {"email": email, "password": password});
+
       GamificationAPI.refreshToken = response.data["refresh_token"];
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
-      GamificationAPI.user = await getCurrentUser();
+      GamificationAPI.user.value = await getCurrentUser();
 
       return {
         "status": response.statusCode,
@@ -61,7 +62,7 @@ class RegisterationAPI {
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
-      GamificationAPI.user = await getCurrentUser();
+      GamificationAPI.user.value = await getCurrentUser();
       return {
         "status": response.statusCode,
       };

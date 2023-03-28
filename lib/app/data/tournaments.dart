@@ -10,9 +10,17 @@ class TournamentsAPI {
 
   TournamentsAPI(this.dio);
 
-  Future<List<Tournament>> getUserTournaments(
-      String username, String email, String password) async {
+  Future<List<Tournament>> getUserTournaments() async {
     try {
+      if (GamificationAPI.user.value?.user.id != null) {
+        final response = await dio.get("tournament/tournaments",
+            queryParameters: {"userId": GamificationAPI.user.value?.user.id});
+
+        final lst = (response.data["data"]["tournaments"] as List)
+            .map((e) => Tournament.fromJson(e))
+            .toList();
+        return lst;
+      }
       return <Tournament>[];
     } on DioError catch (e) {
       print("error $e");

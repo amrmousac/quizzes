@@ -28,7 +28,7 @@ class SignupForm extends StatelessWidget {
             GradientText(
               "Welcome! We are happy to see you here.",
               style: TextStyle(
-                fontSize: 56,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -66,7 +66,7 @@ class SignupForm extends StatelessWidget {
               height: 16.0,
             ),
             AppText(
-              "password",
+              "Password",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -74,7 +74,23 @@ class SignupForm extends StatelessWidget {
             ReactiveTextField(
               formControlName: "password",
               decoration: InputDecoration(
-                hintText: 'password',
+                hintText: 'Password',
+              ),
+              obscureText: true,
+            ),
+            SizedBox(
+              height: 16.0,
+            ),
+            AppText(
+              "Confirm Password",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            ReactiveTextField(
+              formControlName: "confirmPassword",
+              decoration: InputDecoration(
+                hintText: 'confirm Password',
               ),
               obscureText: true,
             ),
@@ -95,7 +111,13 @@ class SignupForm extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      if (controller.signupForm.valid) controller.signup();
+                      if (controller.signupForm.valid &&
+                          (controller.loginForm
+                                  .control('confirmPassword')
+                                  .value ==
+                              controller.loginForm.control('password').value)) {
+                        controller.signup();
+                      }
                     },
                     style: ButtonStyle(
                       padding: MaterialStatePropertyAll(
