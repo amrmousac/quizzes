@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/registeration/views/components/login_form.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -73,11 +74,16 @@ class RegisterationView extends GetView<RegisterationController> {
                     if (isDesktop)
                       Expanded(
                         flex: 3,
-                        child: Image.asset(
+                        child: Container(
+                          child:  Lottie.asset(
+                                "assets/images/login_lottie.json"),
+                         // fit: BoxFit.cover,
+                          height: MediaQuery.of(context).size.height,
+                        ),/*Image.asset(
                           "assets/images/bg.webp",
                           fit: BoxFit.cover,
                           height: MediaQuery.of(context).size.height,
-                        ),
+                        ),*/
                       ),
                   ],
                 ),

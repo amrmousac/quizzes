@@ -6,6 +6,7 @@ import 'package:quizzes/app/utils/resources/color_manager.dart';
 import 'package:quizzes/app/utils/resources/styles_manager.dart';
 import 'package:lottie/lottie.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/play_controller.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -48,38 +49,44 @@ class PlayView extends GetView<PlayController> {
                 "Tournament 19",
                 "Tournament 20",
               ].map((i) {
-                return Card(
-                  elevation: 10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.cyan,
-                    ),
-                    height: 250,
-                    // alignment:const Alignment(0, 0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Stack(
-                          children: [
-                            // SvgPicture.asset("assets/prize.svg");
-                            Center(
-                                child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: Lottie.asset(
-                                        "assets/images/championship.json"))),
-                            Lottie.asset(
-                                "assets/images/99718-confetti-animation.json"),
-                          ],
-                        ),
-                        Text(
-                          i.toString(),
-                          style: getLightStyle(
-                              color: ColorManager.darkGrey, fontSize: 16),
-                        ),
-                      ],
+                return InkWell(
+                  onTap: (){
+                     Get.toNamed(Routes.QUIZE);
+                  },
+                  child: Card(
+                  
+                    elevation: 10,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.cyan,
+                      ),
+                      height: 250,
+                      // alignment:const Alignment(0, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Stack(
+                            children: [
+                              // SvgPicture.asset("assets/prize.svg");
+                              Center(
+                                  child: SizedBox(
+                                      width: 200,
+                                      height: 200,
+                                      child: Lottie.asset(
+                                          "assets/images/championship.json"))),
+                              Lottie.asset(
+                                  "assets/images/99718-confetti-animation.json"),
+                            ],
+                          ),
+                          Text(
+                            i.toString(),
+                            style: getLightStyle(
+                                color: ColorManager.darkGrey, fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

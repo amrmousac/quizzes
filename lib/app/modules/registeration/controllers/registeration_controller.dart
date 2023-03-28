@@ -34,11 +34,12 @@ class RegisterationController extends GetxController {
   }
 
   Future<void> login() async {
-    final res = await api.login();
+   /* final res = await api.login();
     print("token sss: ${api.accessToken}");
 
     if (res) {
       Get.toNamed(Routes.PLAY);
-    }
+    }*/
+     Get.toNamed(Routes.PLAY);
   }
 }

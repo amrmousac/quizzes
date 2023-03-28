@@ -88,7 +88,7 @@ class DashboardDrawer extends StatelessWidget {
                 height: space,
               ),
               GoToPage(
-                text: "Test",
+                text: "Quiz",
                 routeName: Routes.QUIZE,
               ),
               Spacer(),
