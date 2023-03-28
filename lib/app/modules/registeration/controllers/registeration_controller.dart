@@ -44,7 +44,7 @@ class RegisterationController extends GetxController {
   }
 
   Future<void> login() async {
-    final res = await api.registeration.login(
+    final res = await api.registerationAPI.login(
         loginForm.control('email').value, loginForm.control('password').value);
     if (res['status'] == 200) {
       Get.toNamed(Routes.PLAY);
@@ -54,7 +54,7 @@ class RegisterationController extends GetxController {
   }
 
   Future<void> signup() async {
-    final res = await api.registeration.signup(
+    final res = await api.registerationAPI.signup(
         signupForm.control('username').value,
         signupForm.control('email').value,
         signupForm.control('password').value);

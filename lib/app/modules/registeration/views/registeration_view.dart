@@ -33,7 +33,8 @@ class RegisterationView extends GetView<RegisterationController> {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Padding(
+                      child: Container(
+                        color: Theme.of(context).colorScheme.primary,
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,11 +81,11 @@ class RegisterationView extends GetView<RegisterationController> {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          child:  Lottie.asset(
-                                "assets/images/login_lottie.json"),
-                         // fit: BoxFit.cover,
+                          child:
+                              Lottie.asset("assets/images/login_lottie.json"),
+                          // fit: BoxFit.cover,
                           height: MediaQuery.of(context).size.height,
-                        ),/*Image.asset(
+                        ), /*Image.asset(
                           "assets/images/bg.webp",
                           fit: BoxFit.cover,
                           height: MediaQuery.of(context).size.height,

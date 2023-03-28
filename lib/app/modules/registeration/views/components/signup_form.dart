@@ -115,7 +115,7 @@ class SignupForm extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        controller.isLogin.value = false;
+                        controller.isLogin.value = true;
                       },
                       child: AppText("Login"))
                 ],

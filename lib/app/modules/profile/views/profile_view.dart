@@ -10,9 +10,9 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      child: const Center(
+      child: Center(
         child: Text(
-          'ProfileView is working',
+          'ProfileView is ${controller.api.registerationAPI.user?.email}',
           style: TextStyle(fontSize: 20),
         ),
       ),

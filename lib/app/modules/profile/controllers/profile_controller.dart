@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
+import 'package:quizzes/app/data/api.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
-
-  final count = 0.obs;
+  final api = Get.find<GamificationAPI>();
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +17,4 @@ class ProfileController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
