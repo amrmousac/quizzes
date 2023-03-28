@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:quizzes/app/data/Registeration.dart';
 
 class GamificationAPI {
   late Dio dio;
-  String? accessToken;
-  String? refreshToken;
+  static String? accessToken;
+  static String? refreshToken;
   final _storage = FlutterSecureStorage();
+  final registeration = RegisterationAPI();
 
   GamificationAPI() {
     BaseOptions options = BaseOptions(
@@ -69,28 +71,6 @@ class GamificationAPI {
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
         options: options);
-  }
-
-  Future<bool> login() async {
-    try {
-      final response = await Dio().post(
-          "http://127.0.0.1:3000/api/v1/auth/email",
-          options: Options(headers: {
-            'Authorization':
-                'Basic ${base64.encode(utf8.encode('defaultkey:'))}'
-          }),
-          queryParameters: {"username": "usern", "create": true},
-          data: {"email": "usern@example.com", "password": "1234qwer"});
-      refreshToken = response.data["refresh_token"];
-      accessToken = response.data["token"];
-      _storage.write(key: "token", value: accessToken);
-      _storage.write(key: "refresh_token", value: refreshToken);
-      // final jsonData = jsonDecode(response.data);
-      return true;
-    } catch (e) {
-      print("error $e");
-      return false;
-    }
   }
 
   Future<bool> joinTournament() async {

@@ -14,9 +14,6 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    api.joinTournament();
-
-    print("token LLLL: ${api.accessToken}");
   }
 
   @override

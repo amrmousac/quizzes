@@ -7,14 +7,14 @@ import 'package:quizzes/app/routes/app_pages.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key, required this.controller});
+class SignupForm extends StatelessWidget {
+  const SignupForm({super.key, required this.controller});
   final RegisterationController controller;
 
   @override
   Widget build(BuildContext context) {
     return ReactiveForm(
-      formGroup: controller.loginForm,
+      formGroup: controller.signupForm,
       child: Container(
         padding: EdgeInsets.all(8.0),
         constraints: BoxConstraints(
@@ -33,6 +33,21 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             AppText("Enter your email & password to login"),
+            SizedBox(
+              height: 16.0,
+            ),
+            AppText(
+              "Username",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            ReactiveTextField(
+              formControlName: "username",
+              decoration: InputDecoration(
+                hintText: 'Username',
+              ),
+            ),
             SizedBox(
               height: 16.0,
             ),
@@ -81,7 +96,7 @@ class LoginForm extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      if (controller.loginForm.valid) controller.login();
+                      if (controller.signupForm.valid) controller.signup();
                     },
                     style: ButtonStyle(
                       padding: MaterialStatePropertyAll(
@@ -89,7 +104,7 @@ class LoginForm extends StatelessWidget {
                       ),
                     ),
                     child: AppText(
-                      "Login",
+                      "Sign up",
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -102,7 +117,7 @@ class LoginForm extends StatelessWidget {
                       onPressed: () {
                         controller.isLogin.value = false;
                       },
-                      child: AppText("Sign up"))
+                      child: AppText("Login"))
                 ],
               ),
             ),
