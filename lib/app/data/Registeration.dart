@@ -9,7 +9,6 @@ class RegisterationAPI {
   final Dio dio;
 
   RegisterationAPI(this.dio);
-  User? user;
 
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
@@ -26,7 +25,7 @@ class RegisterationAPI {
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
-      user = await getCurrentUser();
+      GamificationAPI.user = await getCurrentUser();
 
       return {
         "status": response.statusCode,
@@ -62,7 +61,7 @@ class RegisterationAPI {
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
-      user = await getCurrentUser();
+      GamificationAPI.user = await getCurrentUser();
       return {
         "status": response.statusCode,
       };

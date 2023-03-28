@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:quizzes/app/services/middleware.dart';
 
 import '../modules/groups/bindings/groups_binding.dart';
 import '../modules/groups/views/groups_view.dart';
@@ -24,39 +25,39 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
+        name: _Paths.HOME,
+        page: () => const HomeView(),
+        binding: HomeBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
       name: _Paths.REGISTERATION,
       page: () => const RegisterationView(),
       binding: RegisterationBinding(),
     ),
     GetPage(
-      name: _Paths.PLAY,
-      page: () => const PlayView(),
-      binding: PlayBinding(),
-    ),
+        name: _Paths.PLAY,
+        page: () => const PlayView(),
+        binding: PlayBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
-      name: _Paths.TOURNAMENTS,
-      page: () => const TournamentsView(),
-      binding: TournamentsBinding(),
-    ),
+        name: _Paths.TOURNAMENTS,
+        page: () => const TournamentsView(),
+        binding: TournamentsBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
-      name: _Paths.GROUPS,
-      page: () => const GroupsView(),
-      binding: GroupsBinding(),
-    ),
+        name: _Paths.GROUPS,
+        page: () => const GroupsView(),
+        binding: GroupsBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-    ),
+        name: _Paths.PROFILE,
+        page: () => const ProfileView(),
+        binding: ProfileBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
-      name: _Paths.QUIZE,
-      page: () => const QuizeView(),
-      binding: QuizeBinding(),
-    ),
+        name: _Paths.QUIZE,
+        page: () => const QuizeView(),
+        binding: QuizeBinding(),
+        middlewares: [AuthMiddleware()]),
   ];
 }

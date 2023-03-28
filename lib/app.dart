@@ -28,6 +28,7 @@ class QuizzesApp extends StatelessWidget {
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         initialBinding: InitialBinding(),
+        onGenerateRoute: (settings) {},
         theme: appTheme,
       );
     });
