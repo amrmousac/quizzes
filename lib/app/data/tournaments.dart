@@ -31,12 +31,32 @@ class TournamentsAPI {
     }
   }
 
-  Future<bool> joinTournament() async {
+  Future<List<Tournament>> getAllTournaments() async {
+    try {
+      if (GamificationAPI.user.value?.user.id != null) {
+        final response = await dio.get(
+          "tournament/all",
+        );
+        final lst = (response.data["tournaments"] as List)
+            .map((e) => Tournament.fromJson(e))
+            .toList();
+        return lst;
+      }
+      return <Tournament>[];
+    } on DioError catch (e) {
+      print("error $e");
+      return <Tournament>[];
+    } catch (e) {
+      return <Tournament>[];
+    }
+  }
+
+  Future<bool> joinTournament(String tournamentId) async {
     try {
       final response = await dio.post(
         "/tournament/join",
         queryParameters: {
-          "tournamentId": "9465d094-93f7-4aaf-aa81-f4eb8f14b248",
+          "tournamentId": tournamentId,
         },
       );
       print(response.data);

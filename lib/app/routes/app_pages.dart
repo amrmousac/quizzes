@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:quizzes/app/services/middleware.dart';
 
+import '../modules/all_tournaments/bindings/all_tournaments_binding.dart';
+import '../modules/all_tournaments/views/all_tournaments_view.dart';
 import '../modules/groups/bindings/groups_binding.dart';
 import '../modules/groups/views/groups_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -19,6 +20,7 @@ import '../modules/singleGroup/bindings/single_group_binding.dart';
 import '../modules/singleGroup/views/single_group_view.dart';
 import '../modules/tournaments/bindings/tournaments_binding.dart';
 import '../modules/tournaments/views/tournaments_view.dart';
+import '../services/middleware.dart';
 
 part 'app_routes.dart';
 
@@ -77,6 +79,11 @@ class AppPages {
       name: _Paths.RANKING,
       page: () => const RankingView(),
       binding: RankingBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALL_TOURNAMENTS,
+      page: () => const AllTournamentsView(),
+      binding: AllTournamentsBinding(),
     ),
   ];
 }

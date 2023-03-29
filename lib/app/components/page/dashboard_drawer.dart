@@ -67,8 +67,15 @@ class DashboardDrawer extends StatelessWidget {
                 height: space,
               ),
               GoToPage(
-                text: "Tournaments",
+                text: "My Tournaments",
                 routeName: Routes.TOURNAMENTS,
+              ),
+              const SizedBox(
+                height: space,
+              ),
+              GoToPage(
+                text: "All Tournaments",
+                routeName: Routes.ALL_TOURNAMENTS,
               ),
               const SizedBox(
                 height: space,

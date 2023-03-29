@@ -53,7 +53,7 @@ class TournamentCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     label: AppText(
-                      "${DateTime.fromMicrosecondsSinceEpoch(tournament.createTime)}",
+                      "${DateTime.fromMicrosecondsSinceEpoch(tournament.createTime!)}",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -87,7 +87,7 @@ class TournamentCard extends StatelessWidget {
                     ),
                   ),
                   AppText(
-                    "Duration: ${DateTime.fromMicrosecondsSinceEpoch(tournament.duration)}",
+                    "Duration: ${DateTime.fromMicrosecondsSinceEpoch(tournament.duration!)}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

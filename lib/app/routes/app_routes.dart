@@ -12,6 +12,7 @@ abstract class Routes {
   static const QUIZE = _Paths.QUIZE;
   static const SINGLE_GROUP = _Paths.SINGLE_GROUP;
   static const RANKING = _Paths.RANKING;
+  static const ALL_TOURNAMENTS = _Paths.ALL_TOURNAMENTS;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const QUIZE = '/quize';
   static const SINGLE_GROUP = '/single-group';
   static const RANKING = '/ranking';
+  static const ALL_TOURNAMENTS = '/all-tournaments';
 }

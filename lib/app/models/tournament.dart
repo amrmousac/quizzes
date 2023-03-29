@@ -33,29 +33,29 @@ class Tournament {
     required this.category,
   });
 
-  int nextReset;
-  Metadata metadata;
+  int? nextReset;
+  dynamic metadata;
   int? endTime;
-  String tournamentOperator;
+  dynamic tournamentOperator;
   String description;
-  int maxSize;
-  int size;
+  int? maxSize;
+  int? size;
   String title;
   int? sortOrder;
   int? prevReset;
-  int startTime;
+  int? startTime;
   String id;
-  int maxNumScore;
+  int? maxNumScore;
   int duration;
-  int startActive;
-  int endActive;
-  bool canEnter;
-  int createTime;
-  int category;
+  int? startActive;
+  int? endActive;
+  bool? canEnter;
+  int? createTime;
+  int? category;
 
   factory Tournament.fromJson(Map<String, dynamic> json) => Tournament(
         nextReset: json["nextReset"],
-        metadata: Metadata.fromJson(json["metadata"]),
+        metadata: json["metadata"],
         endTime: json["endTime"],
         tournamentOperator: json["operator"],
         description: json["description"],
@@ -77,7 +77,7 @@ class Tournament {
 
   Map<String, dynamic> toJson() => {
         "nextReset": nextReset,
-        "metadata": metadata.toJson(),
+        "metadata": metadata,
         "endTime": endTime,
         "operator": tournamentOperator,
         "description": description,
@@ -95,21 +95,5 @@ class Tournament {
         "canEnter": canEnter,
         "createTime": createTime,
         "category": category,
-      };
-}
-
-class Metadata {
-  Metadata({
-    required this.weatherConditions,
-  });
-
-  String weatherConditions;
-
-  factory Metadata.fromJson(Map<String, dynamic> json) => Metadata(
-        weatherConditions: json["weatherConditions"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "weatherConditions": weatherConditions,
       };
 }
