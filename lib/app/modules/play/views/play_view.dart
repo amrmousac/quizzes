@@ -25,6 +25,11 @@ class PlayView extends GetView<PlayController> {
     return AppPage(
       child: Obx(
         () {
+          if (controller.tournaments.isEmpty) {
+            return Center(
+              child: Lottie.asset("assets/images/Athlete.json"),
+            );
+          }
           controller.tournaments.refresh();
           return Center(
             child: LayoutBuilder(builder: (context, constraints) {

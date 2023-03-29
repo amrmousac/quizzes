@@ -14,7 +14,7 @@ class RegisterationAPI {
     try {
       final _storage = FlutterSecureStorage();
       final response = await Dio().post(
-          "http://127.0.0.1:3000/api/v1/auth/email",
+          "http://127.0.0.1:5000/api/v1/auth/email",
           options: Options(headers: {
             'Authorization':
                 'Basic ${base64.encode(utf8.encode('defaultkey:'))}'
@@ -51,7 +51,7 @@ class RegisterationAPI {
     try {
       final _storage = FlutterSecureStorage();
       final response = await Dio().post(
-          "http://127.0.0.1:3000/api/v1/auth/email",
+          "http://127.0.0.1:5000/api/v1/auth/email",
           options: Options(headers: {
             'Authorization':
                 'Basic ${base64.encode(utf8.encode('defaultkey:'))}'

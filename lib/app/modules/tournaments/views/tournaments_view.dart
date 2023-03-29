@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quizzes/app/components/page/app_page.dart';
 import 'package:quizzes/app/modules/tournaments/views/components/tournament_card.dart';
 import 'package:quizzes/app/utils/resources/styles_manager.dart';
@@ -13,11 +14,16 @@ class TournamentsView extends GetView<TournamentsController> {
   const TournamentsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        controller.tournaments.refresh();
-        return AppPage(
-          child: Padding(
+    return AppPage(
+      child: Obx(
+        () {
+          if (controller.tournaments.isEmpty) {
+            return Center(
+              child: Lottie.asset("assets/images/Athlete.json"),
+            );
+          }
+          controller.tournaments.refresh();
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Wrap(
@@ -27,9 +33,9 @@ class TournamentsView extends GetView<TournamentsController> {
                     return TournamentCard(tournament: tournament);
                   }).toList()),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

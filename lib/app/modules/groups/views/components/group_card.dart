@@ -43,8 +43,10 @@ class groupCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(group.group.avatarUrl, scale: 40),
+                        backgroundImage: NetworkImage(
+                            group.group.avatarUrl ??
+                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
+                            scale: 40),
                       ),
                       SizedBox(
                         width: 16.0,
@@ -86,7 +88,7 @@ class groupCard extends StatelessWidget {
                 runSpacing: 8.0,
                 children: [
                   AppText(
-                    "lang: ${group.group.langTag}",
+                    "Lang: ${group.group.langTag}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

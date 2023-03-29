@@ -42,11 +42,11 @@ class User {
 
   String id;
   String username;
-  String langTag;
-  String location;
-  String metadata;
-  DateTime createTime;
-  DateTime updateTime;
+  String? langTag;
+  String? location;
+  String? metadata;
+  DateTime? createTime;
+  DateTime? updateTime;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
@@ -64,7 +64,7 @@ class User {
         "lang_tag": langTag,
         "location": location,
         "metadata": metadata,
-        "create_time": createTime.toIso8601String(),
-        "update_time": updateTime.toIso8601String(),
+        "create_time": createTime?.toIso8601String(),
+        "update_time": updateTime?.toIso8601String(),
       };
 }

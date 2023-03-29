@@ -46,11 +46,11 @@ class UserClass {
 
   String id;
   String username;
-  String langTag;
-  String location;
-  String metadata;
-  DateTime createTime;
-  DateTime updateTime;
+  String? langTag;
+  String? location;
+  String? metadata;
+  DateTime? createTime;
+  DateTime? updateTime;
 
   factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
         id: json["id"],
@@ -68,7 +68,7 @@ class UserClass {
         "lang_tag": langTag,
         "location": location,
         "metadata": metadata,
-        "create_time": createTime.toIso8601String(),
-        "update_time": updateTime.toIso8601String(),
+        "create_time": createTime?.toIso8601String(),
+        "update_time": updateTime?.toIso8601String(),
       };
 }

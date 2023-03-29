@@ -14,11 +14,16 @@ class GroupsView extends GetView<GroupsController> {
   const GroupsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        controller.groups.refresh();
-        return AppPage(
-          child: Padding(
+    return AppPage(
+      child: Obx(
+        () {
+          if (controller.groups.isEmpty) {
+            return Center(
+              child: Lottie.asset("assets/images/Athlete.json"),
+            );
+          }
+          controller.groups.refresh();
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Wrap(
@@ -28,9 +33,9 @@ class GroupsView extends GetView<GroupsController> {
                     return groupCard(group: tournament);
                   }).toList()),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/quize/controllers/quize_controller.dart';
 import 'package:quizzes/app/utils/resources/color_manager.dart';
+import 'package:quizzes/app/utils/resources/font_manager.dart';
 
 class QuizWidget extends StatelessWidget {
   final QuizeController controller;
@@ -12,10 +14,13 @@ class QuizWidget extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-        Colors.blue.shade400,
-        Colors.blue.shade900,
-      ])),
+        gradient: LinearGradient(
+          colors: [
+            Colors.blue.shade400,
+            Colors.blue.shade900,
+          ],
+        ),
+      ),
       child: Obx(
         () {
           if (controller.current.value == controller.questions.length) {
@@ -65,6 +70,15 @@ class QuizWidget extends StatelessWidget {
                           ],
                         ),
                       ),
+                      AppText(
+                        controller.tournament?.title ?? "",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32,
+                        ),
+                      ),
+                      Spacer(),
                       Container(
                         margin: EdgeInsets.only(left: 25, right: 25),
                         child: Row(

@@ -8,11 +8,11 @@ class RegisterationController extends GetxController {
   final api = Get.find<GamificationAPI>();
   final loginForm = FormGroup({
     'email': FormControl<String>(
-        validators: [Validators.required],
-        value: kDebugMode ? 'user1@gmail.com' : null),
+      validators: [Validators.required],
+    ),
     'password': FormControl<String>(
-        validators: [Validators.required],
-        value: kDebugMode ? '1234qwer' : null),
+      validators: [Validators.required],
+    ),
   });
 
   final signupForm = FormGroup({

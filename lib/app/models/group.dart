@@ -49,9 +49,9 @@ class GroupData {
   String creatorId;
   String name;
   String description;
-  String langTag;
-  Map<String, dynamic> metadata;
-  String avatarUrl;
+  String? langTag;
+  Map<String, dynamic>? metadata;
+  String? avatarUrl;
   bool open;
   int edgeCount;
   int maxCount;

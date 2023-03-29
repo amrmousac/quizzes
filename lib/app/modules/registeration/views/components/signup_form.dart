@@ -112,10 +112,12 @@ class SignupForm extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (controller.signupForm.valid &&
-                          (controller.loginForm
+                          (controller.signupForm
                                   .control('confirmPassword')
                                   .value ==
-                              controller.loginForm.control('password').value)) {
+                              controller.signupForm
+                                  .control('password')
+                                  .value)) {
                         controller.signup();
                       }
                     },

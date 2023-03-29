@@ -37,10 +37,10 @@ class TournamentsAPI {
         final response = await dio.get(
           "tournament/all",
         );
-        final lst = (response.data["tournaments"] as List)
-            .map((e) => Tournament.fromJson(e))
+        final lst = (response.data["tournaments"] as List?)
+            ?.map((e) => Tournament.fromJson(e))
             .toList();
-        return lst;
+        return lst ?? [];
       }
       return <Tournament>[];
     } on DioError catch (e) {
@@ -55,6 +55,22 @@ class TournamentsAPI {
     try {
       final response = await dio.post(
         "/tournament/join",
+        queryParameters: {
+          "tournamentId": tournamentId,
+        },
+      );
+      print(response.data);
+      return true;
+    } catch (e) {
+      print("error $e");
+      return false;
+    }
+  }
+
+  Future<bool> leaveTournament(String tournamentId) async {
+    try {
+      final response = await dio.delete(
+        "/tournament/record",
         queryParameters: {
           "tournamentId": tournamentId,
         },

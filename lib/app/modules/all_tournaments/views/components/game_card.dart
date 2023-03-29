@@ -60,12 +60,24 @@ class JoinGameCard extends StatelessWidget {
                     if (isJoined)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: AppText(
-                          "Leave",
-                          style: TextStyle(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              Colors.red,
+                            ),
+                          ),
+                          onPressed: () async {
+                            await controller.api.tournamentsAPI
+                                .leaveTournament(tournament.id);
+                            controller.getTournaments();
+                          },
+                          child: AppText(
+                            'Leave',
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                              fontSize: 24),
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
 

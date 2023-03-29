@@ -18,10 +18,10 @@ class GroupsAPI {
             'Authorization': 'Bearer ${GamificationAPI.accessToken}'
           }),
         );
-        final lst = (response.data["user_groups"] as List).map((e) {
+        final lst = (response.data["user_groups"] as List?)?.map((e) {
           return Group.fromJson(e);
         }).toList();
-        return lst;
+        return lst ?? [];
       }
       return <Group>[];
     } on DioError catch (e) {

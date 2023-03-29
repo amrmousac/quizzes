@@ -6,6 +6,7 @@ import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/models/tournament.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
 import 'package:quizzes/app/utils/resources/font_manager.dart';
+import 'package:intl/intl.dart';
 
 class TournamentCard extends StatelessWidget {
   const TournamentCard({super.key, required this.tournament});
@@ -53,7 +54,7 @@ class TournamentCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     label: AppText(
-                      "${DateTime.fromMicrosecondsSinceEpoch(tournament.createTime!)}",
+                      "${DateFormat("yyyy/MM/dd hh:mm a").format(DateTime.fromMillisecondsSinceEpoch(tournament.createTime! * 1000))}",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -67,9 +68,9 @@ class TournamentCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Wrap(
-                alignment: WrapAlignment.spaceEvenly,
+                alignment: WrapAlignment.start,
                 runAlignment: WrapAlignment.start,
-                spacing: 8.0,
+                spacing: 32.0,
                 runSpacing: 8.0,
                 children: [
                   AppText(
@@ -87,7 +88,7 @@ class TournamentCard extends StatelessWidget {
                     ),
                   ),
                   AppText(
-                    "Duration: ${DateTime.fromMicrosecondsSinceEpoch(tournament.duration!)}",
+                    "Operator: ${tournament.tournamentOperator}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

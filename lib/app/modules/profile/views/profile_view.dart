@@ -35,12 +35,12 @@ class ProfileView extends GetView<ProfileController> {
                 SizedBox(height: 8),
                 _InfoItem(
                   title: "Location",
-                  content: user.user.location,
+                  content: user.user.location ?? "",
                 ),
                 SizedBox(height: 8),
                 _InfoItem(
                   title: "Language",
-                  content: user.user.langTag,
+                  content: user.user.langTag ?? "",
                 ),
               ],
             ),

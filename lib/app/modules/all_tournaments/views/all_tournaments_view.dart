@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quizzes/app/components/page/app_page.dart';
 import 'package:quizzes/app/modules/all_tournaments/views/components/game_card.dart';
 import 'package:responsive_grid/responsive_grid.dart';
@@ -14,6 +15,11 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
     return AppPage(
       child: Obx(
         () {
+          if (controller.allTournaments.isEmpty) {
+            return Center(
+              child: Lottie.asset("assets/images/Athlete.json"),
+            );
+          }
           controller.myTournaments.refresh();
           return Center(
             child: LayoutBuilder(builder: (context, constraints) {

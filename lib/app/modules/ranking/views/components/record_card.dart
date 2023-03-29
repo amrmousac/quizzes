@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/tournament_record.dart';
-import 'package:quizzes/app/utils/resources/color_manager.dart';
-import 'package:quizzes/app/utils/resources/font_manager.dart';
-import 'package:quizzes/app/utils/resources/styles_manager.dart';
+import 'package:intl/intl.dart';
 
 class RecordCard extends StatelessWidget {
   const RecordCard({super.key, required this.record});
@@ -46,26 +44,18 @@ class RecordCard extends StatelessWidget {
                   record.username,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: FontSize.s22,
+                    fontSize: 32,
                     color: Colors.white,
                   ),
                 ),
-                record.score != null?
-                  AppText(
-                    "Score: ${record.score}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ):
-                   AppText(
-                    "Score: 0",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  )
-                  ,
+                AppText(
+                  "Rank: ${record.rank}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.yellow,
+                    fontSize: 32,
+                  ),
+                ),
               ],
             ),
           ),
@@ -73,19 +63,42 @@ class RecordCard extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              runAlignment: WrapAlignment.start,
+              alignment: WrapAlignment.start,
+              runAlignment: WrapAlignment.end,
               spacing: 8.0,
               runSpacing: 8.0,
               children: [
                 AppText(
-                  "rank: ${record.rank}",
+                  "Num scores: ${record.numScore ?? 0}",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
-               /* AppText(
+                SizedBox(
+                  width: 16.0,
+                ),
+                AppText(
+                  record.score != null ? "Score: ${record.score}" : "Score: 0",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                AppText(
+                  "Last update: ${DateFormat("yyyy/MM/dd hh:mm a").format(record.updateTime)}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                /* AppText(
                   "UpdateTime: ${record.updateTime}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
