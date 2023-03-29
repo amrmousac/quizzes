@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/tournament.dart';
+import 'package:quizzes/app/models/tournament_record.dart';
 
 class TournamentsAPI {
   final Dio dio;
@@ -27,6 +28,43 @@ class TournamentsAPI {
       return <Tournament>[];
     } catch (e) {
       return <Tournament>[];
+    }
+  }
+
+  Future<bool> joinTournament() async {
+    try {
+      final response = await dio.post(
+        "/tournament/join",
+        queryParameters: {
+          "tournamentId": "9465d094-93f7-4aaf-aa81-f4eb8f14b248",
+        },
+      );
+      print(response.data);
+      return true;
+    } catch (e) {
+      print("error $e");
+      return false;
+    }
+  }
+
+  Future<TournamentRecord?> writeRecord(String tournamentId, int score) async {
+    try {
+      if (GamificationAPI.user.value?.user.id != null) {
+        final response = await dio.post("tournament/record", queryParameters: {
+          "tournamentId": tournamentId
+        }, data: {
+          "owner": GamificationAPI.user.value?.user.id,
+          "score": score
+        });
+
+        return TournamentRecord.fromJson(response.data);
+      }
+      return null;
+    } on DioError catch (e) {
+      print("error $e");
+      return null;
+    } catch (e) {
+      return null;
     }
   }
 }

@@ -19,9 +19,12 @@ class QuizWidget extends StatelessWidget {
       child: Obx(
         () {
           if (controller.current.value == controller.questions.length) {
+            controller.api.tournamentsAPI
+                .writeRecord(controller.tournament!.id, controller.score.value);
             return Center(
               child: Text(
-                "Score: ${controller.score.value}/5",
+                "You got ${controller.score.value}/5, Your score will be submeted to ${controller.tournament!.title} tournament",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.yellow,
                     fontSize: 56,

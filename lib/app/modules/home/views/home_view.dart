@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
           ElevatedButton(
             child: Text("go"),
             onPressed: () {
-              controller.api.joinTournament();
+              // controller.api.joinTournament();
             },
           ),
           Center(

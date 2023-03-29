@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/page/app_page.dart';
-import 'package:quizzes/app/modules/tournaments/controllers/components/tournament_card.dart';
+import 'package:quizzes/app/modules/tournaments/views/components/tournament_card.dart';
 import 'package:quizzes/app/utils/resources/styles_manager.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 

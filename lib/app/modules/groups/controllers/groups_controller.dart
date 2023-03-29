@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:quizzes/app/data/api.dart';
+import 'package:quizzes/app/models/group.dart';
 
 class GroupsController extends GetxController {
-  //TODO: Implement GroupsController
-
-  final count = 0.obs;
+  final api = Get.find<GamificationAPI>();
+  final groups = <Group>[].obs;
   @override
   void onInit() {
     super.onInit();
@@ -12,6 +13,11 @@ class GroupsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    getGroups();
+
+    GamificationAPI.user.listen((p0) {
+      getGroups();
+    });
   }
 
   @override
@@ -19,5 +25,9 @@ class GroupsController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> getGroups() async {
+    groups.clear();
+    groups.addAll(await api.groupsAPI.getUserGroups());
+    groups.refresh();
+  }
 }

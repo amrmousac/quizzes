@@ -6,6 +6,8 @@ import 'package:quizzes/app/routes/app_pages.dart';
 
 class QuizeController extends GetxController {
   final api = Get.find<GamificationAPI>();
+  var tournament = Get.arguments as Tournament?;
+
   final questions = <Quiz>[
     Quiz(
         "1.Is this a laptop?",
@@ -38,8 +40,7 @@ class QuizeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    var data = Get.arguments as Tournament?;
-    if (data == null) {
+    if (tournament == null) {
       Get.offNamed(Routes.PLAY);
     }
   }

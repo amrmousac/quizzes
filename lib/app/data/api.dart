@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart' as getx;
 import 'package:get/get_rx/get_rx.dart';
 import 'package:quizzes/app/data/Registeration.dart';
+import 'package:quizzes/app/data/groups.dart';
 import 'package:quizzes/app/data/tournaments.dart';
 import 'package:quizzes/app/models/user.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
@@ -14,6 +15,7 @@ class GamificationAPI {
   late Dio dio;
   late RegisterationAPI registerationAPI = RegisterationAPI(dio);
   late TournamentsAPI tournamentsAPI = TournamentsAPI(dio);
+  late GroupsAPI groupsAPI = GroupsAPI(dio);
 
   static String? accessToken;
   static String? refreshToken;
@@ -88,21 +90,5 @@ class GamificationAPI {
         data: requestOptions.data,
         queryParameters: requestOptions.queryParameters,
         options: options);
-  }
-
-  Future<bool> joinTournament() async {
-    try {
-      final response = await dio.post(
-        "/tournament/join",
-        queryParameters: {
-          "tournamentId": "9465d094-93f7-4aaf-aa81-f4eb8f14b248",
-        },
-      );
-      print(response.data);
-      return true;
-    } catch (e) {
-      print("error $e");
-      return false;
-    }
   }
 }

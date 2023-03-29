@@ -16,12 +16,12 @@ class User {
     required this.email,
   });
 
-  UserClass user;
+  UserData user;
   String wallet;
   String email;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        user: UserClass.fromJson(json["user"]),
+        user: UserData.fromJson(json["user"]),
         wallet: json["wallet"],
         email: json["email"],
       );
@@ -33,8 +33,8 @@ class User {
       };
 }
 
-class UserClass {
-  UserClass({
+class UserData {
+  UserData({
     required this.id,
     required this.username,
     required this.langTag,
@@ -50,7 +50,7 @@ class UserClass {
   DateTime createTime;
   DateTime updateTime;
 
-  factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
+  factory UserData.fromJson(Map<String, dynamic> json) => UserData(
         id: json["id"],
         username: json["username"],
         langTag: json["lang_tag"],
