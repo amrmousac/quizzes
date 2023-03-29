@@ -5,11 +5,12 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-TournamentRecord tournamentRecordFromJson(String str) =>
-    TournamentRecord.fromJson(json.decode(str));
+List<TournamentRecord> tournamentRecordFromJson(String str) =>
+    List<TournamentRecord>.from(
+        json.decode(str).map((x) => TournamentRecord.fromJson(x)));
 
-String tournamentRecordToJson(TournamentRecord data) =>
-    json.encode(data.toJson());
+String tournamentRecordToJson(List<TournamentRecord> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TournamentRecord {
   TournamentRecord({
@@ -29,13 +30,13 @@ class TournamentRecord {
   String leaderboardId;
   String ownerId;
   String username;
-  int score;
-  int numScore;
-  Map<String, dynamic> metadata;
+  String? score;
+  int? numScore;
+  String metadata;
   DateTime createTime;
   DateTime updateTime;
   DateTime expiryTime;
-  int rank;
+  String rank;
   int maxNumScore;
 
   factory TournamentRecord.fromJson(Map<String, dynamic> json) =>

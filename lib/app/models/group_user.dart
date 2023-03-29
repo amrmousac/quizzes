@@ -1,40 +1,36 @@
 // To parse this JSON data, do
 //
-//     final user = userFromJson(jsonString);
+//     final groupUser = groupUserFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-User userFromJson(String str) => User.fromJson(json.decode(str));
+GroupUser groupUserFromJson(String str) => GroupUser.fromJson(json.decode(str));
 
-String userToJson(User data) => json.encode(data.toJson());
+String groupUserToJson(GroupUser data) => json.encode(data.toJson());
 
-class User {
-  User({
+class GroupUser {
+  GroupUser({
     required this.user,
-    required this.wallet,
-    required this.email,
+    required this.state,
   });
 
-  UserClass user;
-  String wallet;
-  String email;
+  User user;
+  int state;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        user: UserClass.fromJson(json["user"]),
-        wallet: json["wallet"],
-        email: json["email"],
+  factory GroupUser.fromJson(Map<String, dynamic> json) => GroupUser(
+        user: User.fromJson(json["user"]),
+        state: json["state"],
       );
 
   Map<String, dynamic> toJson() => {
         "user": user.toJson(),
-        "wallet": wallet,
-        "email": email,
+        "state": state,
       };
 }
 
-class UserClass {
-  UserClass({
+class User {
+  User({
     required this.id,
     required this.username,
     required this.langTag,
@@ -52,7 +48,7 @@ class UserClass {
   DateTime createTime;
   DateTime updateTime;
 
-  factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         username: json["username"],
         langTag: json["lang_tag"],

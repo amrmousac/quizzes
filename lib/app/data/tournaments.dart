@@ -67,4 +67,52 @@ class TournamentsAPI {
       return null;
     }
   }
+
+  Future<List<TournamentRecord>> getTournamentRecords(
+    String tournamentId,
+  ) async {
+    try {
+      final response = await dio.get(
+        "tournament/records",
+        queryParameters: {"tournamentId": tournamentId},
+      );
+
+      final lst = (response.data["records"] as List)
+          .map((e) => TournamentRecord.fromJson(e))
+          .toList();
+      return lst;
+    } on DioError catch (e) {
+      print("error $e");
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<List<TournamentRecord>> getTournamentRecordsAroundUser(
+    Tournament tournament,
+  ) async {
+    try {
+      if (GamificationAPI.user.value?.user.id != null) {
+        final response = await dio.get(
+          "tournament/owner",
+          queryParameters: {
+            "tournamentId": tournament.id,
+            "ownerId": GamificationAPI.user.value?.user.id,
+            "limit": 100,
+          },
+        );
+        final lst = (response.data["records"] as List)
+            .map((e) => TournamentRecord.fromJson(e))
+            .toList();
+        return lst;
+      }
+      return [];
+    } on DioError catch (e) {
+      print("error $e");
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
 }
