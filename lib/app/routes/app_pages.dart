@@ -10,8 +10,12 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/quize/bindings/quize_binding.dart';
 import '../modules/quize/views/quize_view.dart';
+import '../modules/ranking/bindings/ranking_binding.dart';
+import '../modules/ranking/views/ranking_view.dart';
 import '../modules/registeration/bindings/registeration_binding.dart';
 import '../modules/registeration/views/registeration_view.dart';
+import '../modules/singleGroup/bindings/single_group_binding.dart';
+import '../modules/singleGroup/views/single_group_view.dart';
 import '../modules/tournaments/bindings/tournaments_binding.dart';
 import '../modules/tournaments/views/tournaments_view.dart';
 
@@ -20,7 +24,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.REGISTERATION;
+  static const INITIAL = Routes.RANKING;
 
   static final routes = [
     GetPage(
@@ -57,6 +61,16 @@ class AppPages {
       name: _Paths.QUIZE,
       page: () => const QuizeView(),
       binding: QuizeBinding(),
+    ),
+    GetPage(
+      name: _Paths.SINGLE_GROUP,
+      page: () => const SingleGroupView(),
+      binding: SingleGroupBinding(),
+    ),
+    GetPage(
+      name: _Paths.RANKING,
+      page: () => const RankingView(),
+      binding: RankingBinding(),
     ),
   ];
 }

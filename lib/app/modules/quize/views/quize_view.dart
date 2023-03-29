@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/page/app_page.dart';
 import 'package:quizzes/app/modules/quize/views/quiz_widget.dart';
+import 'package:quizzes/app/modules/singleGroup/views/single_group_widget.dart';
 
 import '../controllers/quize_controller.dart';
 
