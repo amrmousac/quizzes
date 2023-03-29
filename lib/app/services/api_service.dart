@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:quizzes/app/data/api.dart';
 
-class Controller extends GetxService {
+class InitService extends GetxService {
   @override
   void onInit() {
     super.onInit();
+    Get.find<GamificationAPI>().tokenRefresh();
   }
 
   @override

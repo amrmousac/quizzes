@@ -26,13 +26,12 @@ class SignupForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GradientText(
-              "Welcome!",
+              "Welcome! We are happy to see you here.",
               style: TextStyle(
                 fontSize: 56,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            AppText("Enter your email & password to login"),
             SizedBox(
               height: 16.0,
             ),
@@ -115,7 +114,7 @@ class SignupForm extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        controller.isLogin.value = false;
+                        controller.isLogin.value = true;
                       },
                       child: AppText("Login"))
                 ],

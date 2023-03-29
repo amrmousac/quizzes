@@ -3,8 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:quizzes/app/data/api.dart';
+import 'package:quizzes/app/models/user.dart';
 
 class RegisterationAPI {
+  final Dio dio;
+
+  RegisterationAPI(this.dio);
+
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
       final _storage = FlutterSecureStorage();
@@ -20,6 +25,8 @@ class RegisterationAPI {
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
+      GamificationAPI.user = await getCurrentUser();
+
       return {
         "status": response.statusCode,
       };
@@ -54,6 +61,7 @@ class RegisterationAPI {
       GamificationAPI.accessToken = response.data["token"];
       _storage.write(key: "token", value: GamificationAPI.accessToken);
       _storage.write(key: "refresh_token", value: GamificationAPI.refreshToken);
+      GamificationAPI.user = await getCurrentUser();
       return {
         "status": response.statusCode,
       };
@@ -69,6 +77,26 @@ class RegisterationAPI {
         "status": 401,
         "message": e.toString(),
       };
+    }
+  }
+
+  Future<User?> getCurrentUser() async {
+    try {
+      final storage = const FlutterSecureStorage();
+
+      final response = await dio.get(
+        "/user_accounts/fetch_account",
+      );
+      var map = Map<String, dynamic>.from(response.data);
+      var user = User.fromJson(map);
+      print(response.data);
+      return user;
+    } on DioError catch (e) {
+      print("error $e");
+      return null;
+    } catch (e) {
+      print("error $e");
+      return null;
     }
   }
 }

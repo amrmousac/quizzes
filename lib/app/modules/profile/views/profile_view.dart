@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/page/app_page.dart';
+import 'package:quizzes/app/data/api.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -10,9 +11,9 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      child: const Center(
+      child: Center(
         child: Text(
-          'ProfileView is working',
+          'ProfileView is ${GamificationAPI.user?.email}',
           style: TextStyle(fontSize: 20),
         ),
       ),
