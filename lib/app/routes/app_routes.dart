@@ -10,6 +10,8 @@ abstract class Routes {
   static const GROUPS = _Paths.GROUPS;
   static const PROFILE = _Paths.PROFILE;
   static const QUIZE = _Paths.QUIZE;
+  static const SINGLE_GROUP = _Paths.SINGLE_GROUP;
+  static const RANKING = _Paths.RANKING;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const GROUPS = '/groups';
   static const PROFILE = '/profile';
   static const QUIZE = '/quize';
+  static const SINGLE_GROUP = '/single-group';
+  static const RANKING = '/ranking';
 }
