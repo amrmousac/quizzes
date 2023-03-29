@@ -50,14 +50,22 @@ class RecordCard extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                if (record.score != null)
+                record.score != null?
                   AppText(
                     "Score: ${record.score}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
-                  ),
+                  ):
+                   AppText(
+                    "Score: 0",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  )
+                  ,
               ],
             ),
           ),
@@ -77,13 +85,13 @@ class RecordCard extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                AppText(
+               /* AppText(
                   "UpdateTime: ${record.updateTime}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-                ),
+                ),*/
               ],
             ),
           )

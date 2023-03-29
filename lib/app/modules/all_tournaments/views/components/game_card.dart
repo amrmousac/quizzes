@@ -61,10 +61,10 @@ class JoinGameCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: AppText(
-                          "Joined",
+                          "Leave",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.amber,
+                              color: Colors.red,
                               fontSize: 24),
                         ),
                       ),
