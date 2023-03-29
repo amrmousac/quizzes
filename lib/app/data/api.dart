@@ -25,7 +25,7 @@ class GamificationAPI {
 
   GamificationAPI() {
     BaseOptions options = BaseOptions(
-      baseUrl: "http://127.0.0.1:3000/api/v1/",
+      baseUrl: "http://127.0.0.1:5000/api/v1/",
       receiveDataWhenStatusError: true,
       connectTimeout: Duration(seconds: 20),
       receiveTimeout: Duration(seconds: 20),
