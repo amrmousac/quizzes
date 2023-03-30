@@ -41,7 +41,7 @@ class Tournament {
   int? maxSize;
   int? size;
   String title;
-  int? sortOrder;
+  dynamic sortOrder;
   int? prevReset;
   int? startTime;
   String id;
@@ -51,7 +51,7 @@ class Tournament {
   int? endActive;
   bool? canEnter;
   int? createTime;
-  int? category;
+  dynamic category;
 
   factory Tournament.fromJson(Map<String, dynamic> json) => Tournament(
         nextReset: json["nextReset"],

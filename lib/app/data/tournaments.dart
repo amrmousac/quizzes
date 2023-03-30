@@ -37,7 +37,7 @@ class TournamentsAPI {
         final response = await dio.get(
           "tournament/all",
         );
-        final lst = (response.data["tournaments"] as List?)
+        final lst = (response.data as List?)
             ?.map((e) => Tournament.fromJson(e))
             .toList();
         return lst ?? [];

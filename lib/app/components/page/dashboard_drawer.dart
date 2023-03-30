@@ -50,7 +50,7 @@ class DashboardDrawer extends StatelessWidget {
                         )
                       : Container(),
                   GradientText(
-                    "Quizzes",
+                    "Gamification",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: FontSize.s25,
@@ -88,7 +88,7 @@ class DashboardDrawer extends StatelessWidget {
                 height: space,
               ),
               GoToPage(
-                text: "Profile",
+                text: "Preferences",
                 routeName: Routes.PROFILE,
               ),
               const SizedBox(

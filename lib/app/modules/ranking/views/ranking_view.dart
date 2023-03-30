@@ -57,8 +57,7 @@ class RankingView extends GetView<RankingController> {
                               "${DateFormat('yyyy/MM/dd hh:mm a').format(DateTime.fromMillisecondsSinceEpoch(tournament.createTime! * 1000))}"),
                       _InfoItem(
                           title: "Duration",
-                          content:
-                              "${DateFormat('yyyy/MM/dd hh:mm a').format(DateTime.fromMillisecondsSinceEpoch(tournament.duration! * 1000))}"),
+                          content: "${tournament.duration / (60 * 60)} Hours"),
                       _InfoItem(
                           title: "Operatior",
                           content: tournament.tournamentOperator),
