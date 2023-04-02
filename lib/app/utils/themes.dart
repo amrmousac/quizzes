@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 import 'package:quizzes/app/utils/resources/font_manager.dart';
 
 ThemeData appTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
     fontFamily: FontConstants.fontFamily,
-    iconTheme: IconThemeData(color: Colors.blue.shade900),
+    // iconTheme: IconThemeData(color: Colors.blue.shade900),
+    buttonTheme: ButtonThemeData(
+      buttonColor: ColorManager.secondary,
+    ),
     scaffoldBackgroundColor: Colors.grey.shade100,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.blue.shade900,
+      seedColor: ColorManager.primary,
+      primary: ColorManager.primary,
+      secondary: ColorManager.secondary,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -16,7 +22,7 @@ ThemeData appTheme = ThemeData(
           borderRadius: BorderRadius.circular(4.0),
         )),
         backgroundColor: MaterialStatePropertyAll(
-          Colors.blue.shade900,
+          ColorManager.primary,
         ),
       ),
     ),

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/user.dart';
+import 'package:quizzes/app/utils/resources/constants_manager.dart';
 
 class RegisterationAPI {
   final Dio dio;
@@ -14,7 +15,7 @@ class RegisterationAPI {
     try {
       final _storage = FlutterSecureStorage();
       final response = await Dio().post(
-          "http://127.0.0.1:5000/api/v1/auth/email",
+          "http://${AppConstants.baseUrl}:5000/api/v1/auth/email",
           options: Options(headers: {
             'Authorization':
                 'Basic ${base64.encode(utf8.encode('defaultkey:'))}'
@@ -51,7 +52,7 @@ class RegisterationAPI {
     try {
       final _storage = FlutterSecureStorage();
       final response = await Dio().post(
-          "http://127.0.0.1:5000/api/v1/auth/email",
+          "http://${AppConstants.baseUrl}:5000/api/v1/auth/email",
           options: Options(headers: {
             'Authorization':
                 'Basic ${base64.encode(utf8.encode('defaultkey:'))}'

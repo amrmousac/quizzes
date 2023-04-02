@@ -10,6 +10,7 @@ import 'package:quizzes/app/data/groups.dart';
 import 'package:quizzes/app/data/tournaments.dart';
 import 'package:quizzes/app/models/user.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
+import 'package:quizzes/app/utils/resources/constants_manager.dart';
 
 class GamificationAPI {
   late Dio dio;
@@ -25,7 +26,7 @@ class GamificationAPI {
 
   GamificationAPI() {
     BaseOptions options = BaseOptions(
-      baseUrl: "http://127.0.0.1:5000/api/v1/",
+      baseUrl: "http://${AppConstants.baseUrl}:5000/api/v1/",
       receiveDataWhenStatusError: true,
       connectTimeout: Duration(seconds: 20),
       receiveTimeout: Duration(seconds: 20),
@@ -56,7 +57,7 @@ class GamificationAPI {
     try {
       final refToken = await _storage.read(key: "refresh_token");
       final response = await Dio().post(
-        "http://127.0.0.1:7350/v2/account/session/refresh",
+        "http://${AppConstants.baseUrl}:7350/v2/account/session/refresh",
         options: Options(headers: {
           'Authorization': 'Basic ${base64.encode(utf8.encode('defaultkey:'))}'
         }),

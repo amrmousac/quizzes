@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzes/app/components/app_text.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 
 class GradientText extends StatelessWidget {
   const GradientText(
@@ -18,8 +19,8 @@ class GradientText extends StatelessWidget {
     return ShaderMask(
       blendMode: BlendMode.srcIn,
       shaderCallback: (bounds) => LinearGradient(colors: [
-        Colors.blue.shade400,
-        Colors.blue.shade900,
+        ColorManager.secondary,
+        ColorManager.primary,
       ]).createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),

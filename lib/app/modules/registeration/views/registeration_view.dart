@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/registeration/views/components/login_form.dart';
 import 'package:quizzes/app/modules/registeration/views/components/signup_form.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../controllers/registeration_controller.dart';
 
@@ -82,8 +83,8 @@ class RegisterationView extends GetView<RegisterationController> {
                         child: Container(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                            Colors.blue.shade400,
-                            Colors.blue.shade900,
+                            ColorManager.primary,
+                            ColorManager.secondary,
                           ])),
                           child:
                               Lottie.asset("assets/images/login_lottie.json"),

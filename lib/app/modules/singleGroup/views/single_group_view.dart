@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/models/group.dart';
 import 'package:quizzes/app/modules/singleGroup/views/components/user_card.dart';
-import 'package:quizzes/app/modules/singleGroup/views/single_group_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/page/app_page.dart';

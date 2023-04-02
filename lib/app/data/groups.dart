@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/group.dart';
 import 'package:quizzes/app/models/group_user.dart';
+import 'package:quizzes/app/utils/resources/constants_manager.dart';
 
 class GroupsAPI {
   final Dio dio;
@@ -13,7 +14,7 @@ class GroupsAPI {
     try {
       if (GamificationAPI.user.value?.user.id != null) {
         final response = await Dio().get(
-          "http://127.0.0.1:7350/v2/user/${GamificationAPI.user.value?.user.id}/group",
+          "http://${AppConstants.baseUrl}:7350/v2/user/${GamificationAPI.user.value?.user.id}/group",
           options: Options(headers: {
             'Authorization': 'Bearer ${GamificationAPI.accessToken}'
           }),

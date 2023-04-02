@@ -23,9 +23,8 @@ class UserCard extends StatelessWidget {
         gradient: isMe
             ? LinearGradient(
                 colors: [
-                  Colors.blue.shade900,
-                  Colors.blue.shade400,
-                  Colors.blue.shade400,
+                  ColorManager.primary,
+                  ColorManager.secondary,
                 ],
               )
             : LinearGradient(

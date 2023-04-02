@@ -24,8 +24,8 @@ class GameCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             gradient: LinearGradient(
               colors: [
-                Colors.blue.shade400,
-                Colors.blue.shade900,
+                ColorManager.primary,
+                ColorManager.secondary,
               ],
             ),
           ),

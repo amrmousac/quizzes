@@ -3,6 +3,7 @@ import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/tournament_record.dart';
 import 'package:intl/intl.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 
 class RecordCard extends StatelessWidget {
   const RecordCard({super.key, required this.record});
@@ -18,9 +19,8 @@ class RecordCard extends StatelessWidget {
         gradient: isMe
             ? LinearGradient(
                 colors: [
-                  Colors.blue.shade900,
-                  Colors.blue.shade400,
-                  Colors.blue.shade400,
+                  ColorManager.primary,
+                  ColorManager.secondary,
                 ],
               )
             : LinearGradient(

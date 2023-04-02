@@ -16,8 +16,8 @@ class QuizWidget extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.blue.shade400,
-            Colors.blue.shade900,
+            ColorManager.primary,
+            ColorManager.secondary,
           ],
         ),
       ),

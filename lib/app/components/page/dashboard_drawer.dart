@@ -49,16 +49,16 @@ class DashboardDrawer extends StatelessWidget {
                           ),
                         )
                       : Container(),
-                  GradientText(
-                    "Gamification",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: FontSize.s25,
-                    ),
-                  ),
                 ],
               ),
               const Divider(),
+              GoToPage(
+                text: "Home",
+                routeName: Routes.HOME,
+              ),
+              const SizedBox(
+                height: space,
+              ),
               GoToPage(
                 text: "Play",
                 routeName: Routes.PLAY,

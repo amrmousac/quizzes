@@ -9,9 +9,11 @@ class RegisterationController extends GetxController {
   final loginForm = FormGroup({
     'email': FormControl<String>(
       validators: [Validators.required],
+      value: kDebugMode ? "ShadowAssassin@gmail.com" : null,
     ),
     'password': FormControl<String>(
       validators: [Validators.required],
+      value: kDebugMode ? "1234qwer" : null,
     ),
   });
 
@@ -51,7 +53,7 @@ class RegisterationController extends GetxController {
     final res = await api.registerationAPI.login(
         loginForm.control('email').value, loginForm.control('password').value);
     if (res['status'] == 200) {
-      Get.toNamed(Routes.PLAY);
+      Get.toNamed(Routes.HOME);
     } else {
       errorMessage.value = res['message'];
     }
@@ -63,7 +65,7 @@ class RegisterationController extends GetxController {
         signupForm.control('email').value,
         signupForm.control('password').value);
     if (res['status'] == 200) {
-      Get.toNamed(Routes.PLAY);
+      Get.toNamed(Routes.HOME);
     } else {
       errorMessage.value = res['message'];
     }

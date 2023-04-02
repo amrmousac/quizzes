@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/ranking/views/components/record_card.dart';
-import 'package:quizzes/app/modules/ranking/views/ranking_widget.dart';
 import 'package:quizzes/app/utils/resources/font_manager.dart';
 
 import '../../../components/page/app_page.dart';
