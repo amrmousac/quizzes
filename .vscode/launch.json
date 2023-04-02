@@ -8,7 +8,7 @@
             "name": "quizzes",
             "request": "launch",
             "type": "dart",
-            "deviceId": "chrome"
+            // "deviceId": "chrome"
         },
         {
             "name": "quizzes (profile mode)",
