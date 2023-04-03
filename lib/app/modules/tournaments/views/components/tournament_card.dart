@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/models/tournament.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
+import 'package:quizzes/app/utils/resources/color_manager.dart';
 import 'package:quizzes/app/utils/resources/font_manager.dart';
 import 'package:intl/intl.dart';
 
@@ -24,9 +25,8 @@ class TournamentCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           gradient: LinearGradient(
             colors: [
-              Colors.blue.shade900,
-              Colors.blue.shade900,
-              Colors.blue.shade400,
+              ColorManager.primary,
+              ColorManager.secondary,
             ],
           ),
         ),

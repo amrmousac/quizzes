@@ -40,9 +40,9 @@ class QuizeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    if (tournament == null) {
-      Get.offNamed(Routes.PLAY);
-    }
+    // if (tournament == null) {
+    //   Get.offNamed(Routes.PLAY);
+    // }
   }
 
   @override

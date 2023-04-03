@@ -15,18 +15,18 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
     return AppPage(
       child: Obx(
         () {
-          if (controller.allTournaments.isEmpty) {
+          if (controller.tournaments.allTournaments.isEmpty) {
             return Center(
               child: Lottie.asset("assets/images/Athlete.json"),
             );
           }
-          controller.myTournaments.refresh();
+          controller.tournaments.myTournaments.refresh();
           return Center(
             child: LayoutBuilder(builder: (context, constraints) {
               return ResponsiveGridList(
                   desiredItemWidth: 200,
                   minSpacing: 20,
-                  children: controller.allTournaments.map((i) {
+                  children: controller.tournaments.allTournaments.map((i) {
                     return JoinGameCard(
                       tournament: i,
                       controller: controller,

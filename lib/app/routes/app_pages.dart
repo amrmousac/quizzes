@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/play/bindings/play_binding.dart';
 import '../modules/play/views/play_view.dart';
+import '../modules/product_detatils/bindings/product_detatils_binding.dart';
+import '../modules/product_detatils/views/product_detatils_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/quize/bindings/quize_binding.dart';
@@ -84,6 +86,12 @@ class AppPages {
       name: _Paths.ALL_TOURNAMENTS,
       page: () => const AllTournamentsView(),
       binding: AllTournamentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT_DETATILS,
+      page: () => const ProductDetatilsView(),
+      binding: ProductDetatilsBinding(),
+      transition: Transition.rightToLeft,
     ),
   ];
 }

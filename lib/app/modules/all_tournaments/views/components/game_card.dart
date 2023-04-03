@@ -18,7 +18,8 @@ class JoinGameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      bool isJoined = controller.myTournamentsIds.contains(tournament.id);
+      bool isJoined =
+          controller.tournaments.myTournamentsIds.contains(tournament.id);
 
       return Card(
         elevation: 10,
@@ -69,7 +70,7 @@ class JoinGameCard extends StatelessWidget {
                           onPressed: () async {
                             await controller.api.tournamentsAPI
                                 .leaveTournament(tournament.id);
-                            controller.getTournaments();
+                            controller.tournaments.getTournaments();
                           },
                           child: AppText(
                             'Leave',
@@ -91,7 +92,7 @@ class JoinGameCard extends StatelessWidget {
                           onPressed: () async {
                             await controller.api.tournamentsAPI
                                 .joinTournament(tournament.id);
-                            controller.getTournaments();
+                            controller.tournaments.getTournaments();
                           },
                           child: AppText(
                             'Join',

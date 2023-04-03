@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/tournament.dart';
+import 'package:quizzes/app/models/tournament_questions.dart';
 import 'package:quizzes/app/models/tournament_record.dart';
 
 class TournamentsAPI {
@@ -17,10 +18,10 @@ class TournamentsAPI {
         final response = await dio.get("tournament/tournaments",
             queryParameters: {"userId": GamificationAPI.user.value?.user.id});
 
-        final lst = (response.data["data"]["tournaments"] as List)
-            .map((e) => Tournament.fromJson(e))
+        final lst = (response.data["data"]["tournaments"] as List?)
+            ?.map((e) => Tournament.fromJson(e))
             .toList();
-        return lst;
+        return lst ?? <Tournament>[];
       }
       return <Tournament>[];
     } on DioError catch (e) {
@@ -40,7 +41,7 @@ class TournamentsAPI {
         final lst = (response.data as List?)
             ?.map((e) => Tournament.fromJson(e))
             .toList();
-        return lst ?? [];
+        return lst ?? <Tournament>[];
       }
       return <Tournament>[];
     } on DioError catch (e) {
@@ -113,15 +114,15 @@ class TournamentsAPI {
         queryParameters: {"tournamentId": tournamentId},
       );
 
-      final lst = (response.data["records"] as List)
-          .map((e) => TournamentRecord.fromJson(e))
+      final lst = (response.data["records"] as List?)
+          ?.map((e) => TournamentRecord.fromJson(e))
           .toList();
-      return lst;
+      return lst ?? <TournamentRecord>[];
     } on DioError catch (e) {
       print("error $e");
-      return [];
+      return <TournamentRecord>[];
     } catch (e) {
-      return [];
+      return <TournamentRecord>[];
     }
   }
 
@@ -138,17 +139,33 @@ class TournamentsAPI {
             "limit": 100,
           },
         );
-        final lst = (response.data["records"] as List)
-            .map((e) => TournamentRecord.fromJson(e))
+        final lst = (response.data["records"] as List?)
+            ?.map((e) => TournamentRecord.fromJson(e))
             .toList();
-        return lst;
+        return lst ?? <TournamentRecord>[];
       }
-      return [];
+      return <TournamentRecord>[];
     } on DioError catch (e) {
       print("error $e");
-      return [];
+      return <TournamentRecord>[];
     } catch (e) {
-      return [];
+      return <TournamentRecord>[];
+    }
+  }
+
+  Future<TournamentQuestions?> getTournamentAnswers(
+    String tournamentId,
+  ) async {
+    try {
+      final response = await dio.get(
+        "getQuestionOfTournament/?tournamentID=$tournamentId",
+      );
+      return TournamentQuestions.fromJson(response.data);
+    } on DioError catch (e) {
+      print("error $e");
+      return null;
+    } catch (e) {
+      return null;
     }
   }
 }

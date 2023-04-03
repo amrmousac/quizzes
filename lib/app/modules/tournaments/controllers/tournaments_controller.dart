@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/models/tournament.dart';
+import 'package:quizzes/app/services/tournament_services.dart';
 
 class TournamentsController extends GetxController {
   final api = Get.find<GamificationAPI>();
-  final tournaments = <Tournament>[].obs;
+  final tournaments = Get.find<TournamentService>();
   @override
   void onInit() {
     super.onInit();
@@ -13,21 +14,11 @@ class TournamentsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getTournaments();
-
-    GamificationAPI.user.listen((p0) {
-      getTournaments();
-    });
+    // getTournaments();
   }
 
   @override
   void onClose() {
     super.onClose();
-  }
-
-  Future<void> getTournaments() async {
-    tournaments.clear();
-    tournaments.addAll(await api.tournamentsAPI.getUserTournaments());
-    tournaments.refresh();
   }
 }

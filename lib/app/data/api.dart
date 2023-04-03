@@ -43,6 +43,7 @@ class GamificationAPI {
           return handler.next(response);
         },
         onError: (e, handler) async {
+          // return handler.next(e);
           if (accessToken != null) {
             await tokenRefresh();
             return handler.resolve(await _retry(e.requestOptions));
