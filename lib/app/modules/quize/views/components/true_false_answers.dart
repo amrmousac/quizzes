@@ -13,7 +13,6 @@ class TrueFalseAnswers extends StatefulWidget {
 
 class _TrueFalseAnswersState extends State<TrueFalseAnswers> {
   bool visible = false;
-    var player = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -34,25 +33,18 @@ class _TrueFalseAnswersState extends State<TrueFalseAnswers> {
                   color: Colors.white,
                 ),
                 //
-                onTap: () { widget.controller.checkTrueFalse(true, context);
-                            if (widget.controller.isCurrentAnswerCorrect.value == true) {
-                          visible = true;
-                          setState(() {
-                             player.play(AssetSource("success.wav"));
-                          });
-                          Future.delayed(Duration(seconds: 2), () {
-                            widget.controller.upateConfettieAnimation(false);
-                            setState(() {
-                              visible = false;
-                            });
-                           
-                          });
-                        }else{
-                            setState(() {
-                             player.play(AssetSource("false.wav"));
-                          });
-                        }
-                
+                onTap: () {
+                  widget.controller.checkTrueFalse(true, context);
+                  if (widget.controller.isCurrentAnswerCorrect.value == true) {
+                    visible = true;
+
+                    Future.delayed(Duration(seconds: 2), () {
+                      widget.controller.upateConfettieAnimation(false);
+                      setState(() {
+                        visible = false;
+                      });
+                    });
+                  } else {}
                 },
               ),
             ),
@@ -71,41 +63,32 @@ class _TrueFalseAnswersState extends State<TrueFalseAnswers> {
                   Icons.close,
                   color: Colors.white,
                 ),
-                onTap: () { 
+                onTap: () {
                   widget.controller.checkTrueFalse(false, context);
-                if (widget.controller.isCurrentAnswerCorrect.value == true) {
-                          visible = true;
-                           setState(() {
-                             player.play(AssetSource("success.wav"));
-                          });
-                          Future.delayed(Duration(seconds: 2), () {
-                            widget.controller.upateConfettieAnimation(false);
-                            setState(() {
-                              visible = false;
-                            });
-                           
-                          });
-                        }else{
-                            setState(() {
-                             player.play(AssetSource("false.wav"));
-                          });
-                        }
+                  if (widget.controller.isCurrentAnswerCorrect.value == true) {
+                    visible = true;
+
+                    Future.delayed(Duration(seconds: 2), () {
+                      widget.controller.upateConfettieAnimation(false);
+                      setState(() {
+                        visible = false;
+                      });
+                    });
+                  } else {}
                 },
               ),
             ),
-
           ],
         ),
-
- Visibility(
-              visible:visible ,
-              child: Center(
-                  child: SizedBox(
-                      height: 200,
-                      child: Lottie.asset(
-                          "assets/images/99718-confetti-animation.json")),
-                ),
-            )
+        Visibility(
+          visible: visible,
+          child: Center(
+            child: SizedBox(
+                height: 200,
+                child: Lottie.asset(
+                    "assets/images/99718-confetti-animation.json")),
+          ),
+        )
       ],
     );
   }

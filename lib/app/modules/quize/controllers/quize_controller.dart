@@ -5,22 +5,15 @@ import 'package:quizzes/app/models/tournament.dart';
 import 'package:quizzes/app/models/tournament_questions.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
 
-
 class QuizeController extends GetxController {
   final api = Get.find<GamificationAPI>();
   var tournament = Get.arguments as Tournament?;
 
- 
   final tournamentQuize = Rx<TournamentQuestions?>(null);
   final current = 0.obs;
   final score = 0.obs;
   var isCurrentAnswerCorrect = false.obs;
   var showConfettie = false.obs;
-
-  
-
-
-
 
   @override
   void onInit() {
@@ -42,12 +35,6 @@ class QuizeController extends GetxController {
     super.onClose();
   }
 
-
-
-
-
-
-
   Future<void> getQuestions() async {
     tournamentQuize.value =
         await api.tournamentsAPI.getTournamentAnswers(tournament!.id);
@@ -57,6 +44,7 @@ class QuizeController extends GetxController {
     if (choice ==
         tournamentQuize.value?.questions.questions[current.value].answer) {
       score.value++;
+      showMyDialogRight(ctx);
       final snackbar = SnackBar(
         content: Text('Correct Answer'),
         duration: Duration(milliseconds: 500),
@@ -64,8 +52,8 @@ class QuizeController extends GetxController {
       );
 
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-            isCurrentAnswerCorrect.value = true ;
-      showConfettie.value= true;
+      isCurrentAnswerCorrect.value = true;
+      showConfettie.value = true;
       update();
     } else {
       final snackbar = SnackBar(
@@ -74,8 +62,8 @@ class QuizeController extends GetxController {
         backgroundColor: Colors.red,
       );
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-            isCurrentAnswerCorrect.value = false ;
-      showConfettie.value= false;
+      isCurrentAnswerCorrect.value = false;
+      showConfettie.value = false;
       update();
     }
     if (current.value <
@@ -88,16 +76,17 @@ class QuizeController extends GetxController {
     if (choice ==
         tournamentQuize.value?.questions.questions[current.value].trueNum) {
       score.value++;
+      showMyDialogRight(ctx);
+
       final snackbar = SnackBar(
         content: Text('Correct Answer'),
         duration: Duration(milliseconds: 500),
         backgroundColor: Colors.green,
       );
-      isCurrentAnswerCorrect.value = true ;
-      showConfettie.value= true;
+      isCurrentAnswerCorrect.value = true;
+      showConfettie.value = true;
       update();
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-      
     } else {
       final snackbar = SnackBar(
         content: Text('Wrong Answer'),
@@ -105,9 +94,9 @@ class QuizeController extends GetxController {
         backgroundColor: Colors.red,
       );
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
-        isCurrentAnswerCorrect.value = false ;
-        showConfettie.value= false;
-        update();
+      isCurrentAnswerCorrect.value = false;
+      showConfettie.value = false;
+      update();
     }
     if (current.value <
         (tournamentQuize.value?.questions.questions.length ?? 0)) {
@@ -116,20 +105,57 @@ class QuizeController extends GetxController {
   }
 
   void reset() {
-    isCurrentAnswerCorrect.value= false ;
-    showConfettie.value= false;
+    isCurrentAnswerCorrect.value = false;
+    showConfettie.value = false;
     update();
     current.value = 0;
     score.value = 0;
   }
 
-void upateConfettieAnimation (bool x){
-   showConfettie.value= x ;
-   isCurrentAnswerCorrect.value= x ;
-   update();
-}
+  void upateConfettieAnimation(bool x) {
+    showConfettie.value = x;
+    isCurrentAnswerCorrect.value = x;
+    update();
+  }
 
-
+  Future<void> showMyDialogRight(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Column(
+            children: [
+              Image.asset("assets/images/smile.png"),
+              Text(
+                'Congratulations!!',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey.shade600,
+                ),
+              ),
+            ],
+          ),
+          content: SingleChildScrollView(
+              // child: ListBody(
+              //   children: const <Widget>[
+              //     Center(child: Text('You got rewarded with a meal!')),
+              //   ],
+              // ),
+              ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
 class Quiz {

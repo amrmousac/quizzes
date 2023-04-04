@@ -18,7 +18,6 @@ class McqAnswers extends StatefulWidget {
 
 class _McqAnswersState extends State<McqAnswers> {
   bool visible = false;
-   var player = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -30,25 +29,17 @@ class _McqAnswersState extends State<McqAnswers> {
                 (e) => InkWell(
                   onTap: () {
                     widget.controller.checkMcq(e.no, context);
-                    if (widget.controller.isCurrentAnswerCorrect.value == true) {
+                    if (widget.controller.isCurrentAnswerCorrect.value ==
+                        true) {
                       visible = true;
-                         setState(() {
-                             player.play(AssetSource("success.wav"));
-                          });
+
                       Future.delayed(Duration(seconds: 2), () {
-                      
                         widget.controller.upateConfettieAnimation(false);
                         setState(() {
                           visible = false;
                         });
-                       
                       });
-                    }else{
-
-                         setState(() {
-                             player.play(AssetSource("false.wav"));
-                          });
-                    }
+                    } else {}
                   },
                   child: Center(
                     child: Container(
@@ -69,17 +60,15 @@ class _McqAnswersState extends State<McqAnswers> {
               )
               .toList(),
         ),
-        
         Visibility(
-              visible:visible ,
-              child: Center(
-                  child: SizedBox(
-                      height: 200,
-                      child: Lottie.asset(
-                          "assets/images/99718-confetti-animation.json")),
-                ),
-            )
-           
+          visible: visible,
+          child: Center(
+            child: SizedBox(
+                height: 200,
+                child: Lottie.asset(
+                    "assets/images/99718-confetti-animation.json")),
+          ),
+        )
       ],
     );
   }
