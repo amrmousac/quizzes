@@ -115,9 +115,11 @@ class QuizeView extends GetView<QuizeController> {
                         clipBehavior: Clip.antiAlias,
                         padding: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0)),
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
                         child: Image.network(
                           question.image!,
+                          fit: BoxFit.cover,
                           height: 350,
                         ),
                       ),
