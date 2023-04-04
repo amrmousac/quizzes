@@ -9,11 +9,11 @@ class RegisterationController extends GetxController {
   final loginForm = FormGroup({
     'email': FormControl<String>(
       validators: [Validators.required],
-      value: kDebugMode ? "ShadowAssassin@gmail.com" : null,
+      value: kDebugMode ? "mustafa@gmail.com" : null,
     ),
     'password': FormControl<String>(
       validators: [Validators.required],
-      value: kDebugMode ? "1234qwer" : null,
+      value: kDebugMode ? "3bc8f72e95a9‏" : null,
     ),
   });
 
