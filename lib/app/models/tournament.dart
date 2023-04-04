@@ -31,6 +31,7 @@ class Tournament {
     required this.canEnter,
     required this.createTime,
     required this.category,
+    required this.collection,
   });
 
   int? nextReset;
@@ -52,6 +53,7 @@ class Tournament {
   bool? canEnter;
   int? createTime;
   dynamic category;
+  String? collection;
 
   factory Tournament.fromJson(Map<String, dynamic> json) => Tournament(
         nextReset: json["nextReset"],
@@ -73,6 +75,7 @@ class Tournament {
         canEnter: json["canEnter"],
         createTime: json["createTime"],
         category: json["category"],
+        collection: json["collection"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -95,5 +98,6 @@ class Tournament {
         "canEnter": canEnter,
         "createTime": createTime,
         "category": category,
+        "collection": collection,
       };
 }

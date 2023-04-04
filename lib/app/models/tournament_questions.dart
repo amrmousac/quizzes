@@ -53,28 +53,29 @@ class Question {
   Question({
     required this.answer,
     required this.question,
-    required this.trueNum,
     required this.answers,
+    required this.trueNum,
   });
 
   bool? answer;
   String question;
-  int? trueNum;
   List<Answer>? answers;
+  int? trueNum;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
         answer: json["answer"],
         question: json["question"],
+        answers: List<Answer>.from(
+            json["answers"]?.map((x) => Answer.fromJson(x)) ?? <Answer>[]),
         trueNum: json["trueNum"],
-        answers:
-            List<Answer>.from(json["answers"].map((x) => Answer.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "answer": answer,
         "question": question,
+        "answers":
+            List<Answer>.from(answers?.map((x) => x.toJson()) ?? <Answer>[]),
         "trueNum": trueNum,
-        "answers": List<Answer>.from(answers?.map((x) => x.toJson()) ?? []),
       };
 }
 

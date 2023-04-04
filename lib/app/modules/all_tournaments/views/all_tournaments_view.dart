@@ -20,7 +20,6 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
               child: Lottie.asset("assets/images/Athlete.json"),
             );
           }
-          controller.tournaments.myTournaments.refresh();
           return Center(
             child: LayoutBuilder(builder: (context, constraints) {
               return ResponsiveGridList(

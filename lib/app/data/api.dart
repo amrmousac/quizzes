@@ -46,6 +46,7 @@ class GamificationAPI {
           // return handler.next(e);
           if (accessToken != null) {
             await tokenRefresh();
+            await Future.delayed(Duration(seconds: 5));
             return handler.resolve(await _retry(e.requestOptions));
           }
           return handler.next(e);

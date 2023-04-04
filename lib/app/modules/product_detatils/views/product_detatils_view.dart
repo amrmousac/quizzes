@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:quizzes/app/components/app_text.dart';
@@ -37,7 +38,7 @@ class ProductDetatilsView extends GetView<ProductDetatilsController> {
           header(),
           hero(),
           Expanded(child: section()),
-          bottomButton()
+          bottomButton(context)
         ],
       ),
     ));
@@ -162,7 +163,7 @@ Widget property() {
   );
 }
 
-Widget bottomButton() {
+Widget bottomButton(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(right: 20),
     child: Padding(
@@ -172,10 +173,26 @@ Widget bottomButton() {
         children: [
           ElevatedButton(
             onPressed: () {
+              final snackbar = SnackBar(
+                content: Text(
+                  '🏆 1 points added to your score',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                  ),
+                ),
+                duration: Duration(milliseconds: 3000),
+                elevation: 8,
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.green,
+                margin: EdgeInsets.only(
+                    bottom: Get.height - 100, right: 8.0, left: 8.0),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
               Get.back();
             },
             child: AppText(
-              "Buy",
+              "Buy Now",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
