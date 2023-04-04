@@ -6,6 +6,8 @@ import '../modules/groups/bindings/groups_binding.dart';
 import '../modules/groups/views/groups_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/notifications_page/bindings/notifications_page_binding.dart';
+import '../modules/notifications_page/views/notifications_page_view.dart';
 import '../modules/play/bindings/play_binding.dart';
 import '../modules/play/views/play_view.dart';
 import '../modules/product_detatils/bindings/product_detatils_binding.dart';
@@ -92,6 +94,11 @@ class AppPages {
       page: () => const ProductDetatilsView(),
       binding: ProductDetatilsBinding(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS_PAGE,
+      page: () => const NotificationsPageView(),
+      binding: NotificationsPageBinding(),
     ),
   ];
 }

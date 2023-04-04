@@ -38,7 +38,7 @@ class ProductDetatilsView extends GetView<ProductDetatilsController> {
           header(),
           hero(),
           Expanded(child: section()),
-          bottomButton(context)
+          bottomButton(context, controller)
         ],
       ),
     ));
@@ -163,7 +163,8 @@ Widget property() {
   );
 }
 
-Widget bottomButton(BuildContext context) {
+Widget bottomButton(
+    BuildContext context, ProductDetatilsController controller) {
   return Container(
     padding: EdgeInsets.only(right: 20),
     child: Padding(
@@ -172,7 +173,7 @@ Widget bottomButton(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               final snackbar = SnackBar(
                 content: Text(
                   '🏆 1 points added to your score',
@@ -188,6 +189,8 @@ Widget bottomButton(BuildContext context) {
                 margin: EdgeInsets.only(
                     bottom: Get.height - 100, right: 8.0, left: 8.0),
               );
+              await controller.submitOrder();
+              await controller.tournaments.getTournamentsRecords();
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
               Get.back();
             },

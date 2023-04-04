@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart' as getx;
 import 'package:get/get_rx/get_rx.dart';
+import 'package:quizzes/app/data/Notifications.dart';
 import 'package:quizzes/app/data/Registeration.dart';
 import 'package:quizzes/app/data/groups.dart';
 import 'package:quizzes/app/data/tournaments.dart';
@@ -17,6 +18,7 @@ class GamificationAPI {
   late RegisterationAPI registerationAPI = RegisterationAPI(dio);
   late TournamentsAPI tournamentsAPI = TournamentsAPI(dio);
   late GroupsAPI groupsAPI = GroupsAPI(dio);
+  late NotificationsAPI notificationsAPI = NotificationsAPI(dio);
 
   static String? accessToken;
   static String? refreshToken;

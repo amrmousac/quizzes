@@ -14,6 +14,7 @@ abstract class Routes {
   static const RANKING = _Paths.RANKING;
   static const ALL_TOURNAMENTS = _Paths.ALL_TOURNAMENTS;
   static const PRODUCT_DETATILS = _Paths.PRODUCT_DETATILS;
+  static const NOTIFICATIONS_PAGE = _Paths.NOTIFICATIONS_PAGE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const RANKING = '/ranking';
   static const ALL_TOURNAMENTS = '/all-tournaments';
   static const PRODUCT_DETATILS = '/product-detatils';
+  static const NOTIFICATIONS_PAGE = '/notifications-page';
 }

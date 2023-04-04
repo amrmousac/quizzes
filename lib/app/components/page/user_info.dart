@@ -4,10 +4,12 @@ import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/components/page/dashboard_drawer.dart';
 import 'package:quizzes/app/data/api.dart';
 import 'package:quizzes/app/routes/app_pages.dart';
+import 'package:quizzes/app/services/tournament_services.dart';
 import 'package:quizzes/app/utils/resources/color_manager.dart';
 
 class UserInfo extends StatelessWidget {
-  const UserInfo({super.key, required this.scaffoldkey});
+  UserInfo({super.key, required this.scaffoldkey});
+  final tournaments = Get.find<TournamentService>();
 
   final GlobalKey<ScaffoldState> scaffoldkey;
 
@@ -16,6 +18,8 @@ class UserInfo extends StatelessWidget {
     return Obx(
       () {
         final user = GamificationAPI.user.value;
+        tournaments.pointsTournamentsRecords.refresh();
+
         if (user == null) {
           return Container();
         }
@@ -31,21 +35,47 @@ class UserInfo extends StatelessWidget {
               //   },
               //   icon: const Icon(Icons.menu),
               // ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppText(
-                    "Hi, ${user.user.displayName ?? user.user.username}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppText(
+                      "Hi, ${user.user.displayName ?? user.user.username}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  AppText(
-                    "🏠 ${user.user.location ?? ""}",
-                    style: TextStyle(),
-                  ),
-                ],
+                    Row(
+                      children: [
+                        AppText(
+                          "🏠 ${user.user.location ?? ""}",
+                          style: TextStyle(),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        AppText(
+                          "🪙 ${tournaments.score.value}",
+                          style: TextStyle(),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.NOTIFICATIONS_PAGE);
+                          },
+                          child: AppText(
+                            "🔔 ${tournaments.newNotificationsCount.value}",
+                            style: TextStyle(),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
 
               PopupMenuButton<String>(
