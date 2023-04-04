@@ -20,12 +20,10 @@ class QuizeView extends GetView<QuizeController> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              ColorManager.primary,
-              ColorManager.secondary,
-            ],
-          ),
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 237, 159, 147),
+            ColorManager.secondary,
+          ]),
         ),
         child: Obx(
           () {

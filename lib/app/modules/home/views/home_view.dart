@@ -35,12 +35,13 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       height: 32.0,
                     ),
-                    SectionHeader(
-                      title: "Games",
-                      onTap: () {
-                        Get.toNamed(Routes.ALL_TOURNAMENTS);
-                      },
-                    ),
+                    if (controller.gameTournaments.length != 0)
+                      SectionHeader(
+                        title: "Games",
+                        onTap: () {
+                          Get.toNamed(Routes.ALL_TOURNAMENTS);
+                        },
+                      ),
                     Wrap(
                       alignment: WrapAlignment.spaceEvenly,
                       spacing: 8.0,

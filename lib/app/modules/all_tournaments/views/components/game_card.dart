@@ -12,9 +12,13 @@ import 'package:quizzes/app/utils/resources/styles_manager.dart';
 
 class JoinGameCard extends StatelessWidget {
   const JoinGameCard(
-      {super.key, required this.tournament, required this.controller});
+      {super.key,
+      required this.tournament,
+      required this.controller,
+      required this.color});
   final Tournament tournament;
   final AllTournamentsController controller;
+  final List<Color> color;
   @override
   Widget build(BuildContext context) {
     bool isJoined =
@@ -26,10 +30,7 @@ class JoinGameCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           gradient: LinearGradient(
-            colors: [
-              ColorManager.primary,
-              ColorManager.secondary,
-            ],
+            colors: color,
           ),
         ),
         height: 100,
