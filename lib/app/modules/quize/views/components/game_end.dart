@@ -13,30 +13,33 @@ class GameEnd extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(child:  Container(
-              width: 200,
-              height: 200,
-              child: Image.asset("assets/images/smile.png")),),
+            Center(
+              child: Container(
+                  width: 200,
+                  height: 200,
+                  child: Image.asset("assets/images/smile.png")),
+            ),
             Container(
               padding: EdgeInsets.all(10),
               child: Center(
                 child: Text(
-                  "You got (${controller.score.value}), Your score will be submitted to ${controller.tournament!.title} tournament",
+                  "You got (${controller.score.value}) Points.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.yellow, fontSize: 45, fontWeight: FontWeight.w400),
+                      color: Colors.yellow,
+                      fontSize: 45,
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ),
           ],
         ),
-
         Center(
-            child: SizedBox(
-                height: 200,
-                child: Lottie.asset(
-                    "assets/images/99718-confetti-animation.json")),
-          )
+          child: SizedBox(
+              height: 200,
+              child:
+                  Lottie.asset("assets/images/99718-confetti-animation.json")),
+        )
       ],
     );
   }

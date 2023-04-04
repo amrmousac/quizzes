@@ -22,6 +22,7 @@ class JoinGameCard extends StatelessWidget {
     return Card(
       elevation: 10,
       child: Container(
+        padding: EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           gradient: LinearGradient(
@@ -31,80 +32,77 @@ class JoinGameCard extends StatelessWidget {
             ],
           ),
         ),
-        height: 250,
+        height: 100,
+        width: double.infinity,
         // alignment:const Alignment(0, 0),
-        child: Stack(
-          children: [
-            Lottie.asset("assets/images/99718-confetti-animation.json"),
-            Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // SvgPicture.asset("assets/prize.svg");
-                  Expanded(
-                      child: Lottie.asset("assets/images/championship.json")),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      tournament.title,
+        child: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // SvgPicture.asset("assets/prize.svg");
+              // Lottie.asset("assets/images/99718-confetti-animation.json"),
+
+              Lottie.asset("assets/images/championship.json"),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  tournament.title,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: ColorManager.white,
+                      fontSize: 21),
+                ),
+              ),
+              Spacer(),
+              if (isJoined)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Colors.red,
+                      ),
+                    ),
+                    onPressed: () async {
+                      await controller.api.tournamentsAPI
+                          .leaveTournament(tournament.id);
+                      controller.tournaments.getTournaments();
+                    },
+                    child: AppText(
+                      'Leave',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ColorManager.white,
-                          fontSize: 21),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
+                ),
 
-                  if (isJoined)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                            Colors.red,
-                          ),
-                        ),
-                        onPressed: () async {
-                          await controller.api.tournamentsAPI
-                              .leaveTournament(tournament.id);
-                          controller.tournaments.getTournaments();
-                        },
-                        child: AppText(
-                          'Leave',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+              if (!isJoined)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber)),
+                    onPressed: () async {
+                      await controller.api.tournamentsAPI
+                          .joinTournament(tournament.id);
+                      controller.tournaments.getTournaments();
+                    },
+                    child: AppText(
+                      'Join',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-
-                  if (!isJoined)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.amber)),
-                        onPressed: () async {
-                          await controller.api.tournamentsAPI
-                              .joinTournament(tournament.id);
-                          controller.tournaments.getTournaments();
-                        },
-                        child: AppText(
-                          'Join',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ],
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

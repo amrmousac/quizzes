@@ -27,4 +27,11 @@ class ProductDetatilsController extends GetxController {
       await api.tournamentsAPI.writeRecord(element.id, 1);
     }
   }
+
+  Future<void> deleteScore(int score) async {
+    for (var element in tournaments.pointsTournaments) {
+      await api.tournamentsAPI.writeRecord(element.id, -score);
+    }
+    tournaments.score.value = "0";
+  }
 }

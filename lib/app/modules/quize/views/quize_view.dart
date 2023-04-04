@@ -120,6 +120,7 @@ class QuizeView extends GetView<QuizeController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // if(question.image)
                         Text(
                           question.question,
                           style: TextStyle(

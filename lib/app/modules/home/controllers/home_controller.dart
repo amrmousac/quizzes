@@ -35,7 +35,7 @@ class HomeController extends GetxController {
     gameTournaments.clear();
 
     for (var element in tournaments.myTournaments) {
-      if (element.collection != "points") {
+      if (element.collection == "mcq" || element.collection == "true_false") {
         gameTournaments.add(element);
       }
     }

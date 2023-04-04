@@ -51,6 +51,7 @@ class Questions {
 
 class Question {
   Question({
+    required this.image,
     required this.answer,
     required this.question,
     required this.answers,
@@ -58,11 +59,13 @@ class Question {
   });
 
   bool? answer;
+  String? image;
   String question;
   List<Answer>? answers;
   int? trueNum;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
+        image: json["image"],
         answer: json["answer"],
         question: json["question"],
         answers: List<Answer>.from(
@@ -71,6 +74,7 @@ class Question {
       );
 
   Map<String, dynamic> toJson() => {
+        "image": image,
         "answer": answer,
         "question": question,
         "answers":

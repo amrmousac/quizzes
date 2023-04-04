@@ -14,6 +14,7 @@ class TournamentService extends GetxService {
   final pointsTournaments = <Tournament>[].obs;
   final pointsTournamentsRecords = <TournamentRecord>[].obs;
   final score = "0".obs;
+  final prizeNum = 0.obs;
   final myTournamentsIds = <String>[].obs;
   final notifications = Rx<Notifications?>(null);
 
@@ -51,7 +52,7 @@ class TournamentService extends GetxService {
     allTournaments.refresh();
     pointsTournaments.refresh();
     getAllNotifications();
-    Timer.periodic(Duration(seconds: 15), (Timer t) {
+    Timer.periodic(Duration(seconds: 5), (Timer t) {
       getAllNotifications();
     });
   }
@@ -70,7 +71,7 @@ class TournamentService extends GetxService {
     notifications.value = await api.notificationsAPI.getAllNotifications();
     if ((notifications.value?.notifications.length ?? 0) >
         notificationsCount.value) {
-      newNotificationsCount.value =
+      newNotificationsCount.value +=
           (notifications.value?.notifications.length ?? 0) -
               notificationsCount.value;
     }

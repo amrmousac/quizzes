@@ -18,7 +18,7 @@ class UserInfo extends StatelessWidget {
     return Obx(
       () {
         final user = GamificationAPI.user.value;
-        tournaments.pointsTournamentsRecords.refresh();
+        // tournaments.pointsTournamentsRecords.refresh();
 
         if (user == null) {
           return Container();

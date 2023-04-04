@@ -192,7 +192,14 @@ Widget bottomButton(
               await controller.submitOrder();
               await controller.tournaments.getTournamentsRecords();
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
               Get.back();
+
+              int s = int.tryParse(controller.tournaments.score.value) ?? 0;
+              if (s > 5) {
+                _showMyDialog(context);
+                controller.deleteScore(s);
+              }
             },
             child: AppText(
               "Buy Now",
@@ -207,5 +214,44 @@ Widget bottomButton(
         ],
       ),
     ),
+  );
+}
+
+Future<void> _showMyDialog(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Column(
+          children: [
+            Image.asset("assets/images/smile.png"),
+            Text(
+              'Congratulations!!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade600,
+              ),
+            ),
+          ],
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Center(child: Text('You got rewarded with a meal!')),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }

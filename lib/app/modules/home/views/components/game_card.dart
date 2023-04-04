@@ -27,21 +27,16 @@ class PlayGameCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          if(tournament.title == 'Solve') 
-           Container(
-            width: 50,
-            height: 50,
-            child: Image.asset("assets/images/mcq.png")),
-          if(tournament.title == 'Find') 
-           Container(
-             width: 50,
-            height: 50,
-            child: Image.asset("assets/images/trueFalse.jpg")),
-           if(tournament.title == 'test') 
-           Container(
-            width: 50,
-            height: 50,
-            child: Image.asset("assets/images/scores.png")),
+            if (tournament.collection == 'mcq')
+              Container(
+                  width: 50,
+                  height: 50,
+                  child: Image.asset("assets/images/mcq.png")),
+            if (tournament.collection == 'true_false')
+              Container(
+                  width: 50,
+                  height: 50,
+                  child: Image.asset("assets/images/trueFalse.jpg")),
             AppText(
               tournament.title,
               maxLines: 1,

@@ -21,24 +21,73 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
               child: Lottie.asset("assets/images/Athlete.json"),
             );
           }
-          return Column(
-            children: [
-              Center(
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    return ResponsiveGridList(
-                        desiredItemWidth: 200,
-                        minSpacing: 20,
-                        children: controller.tournaments.allTournaments.map((i) {
-                          return JoinGameCard(
+          return Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    child: Text(
+                      'joined tournaments',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      controller.pageController.animateToPage(0,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.linear);
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text(
+                      'Available tournaments',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      controller.pageController.animateToPage(1,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.linear);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: PageView(
+              controller: controller.pageController,
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...controller.tournaments.myTournaments.map((i) {
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.RANKING, arguments: i);
+                          },
+                          child: JoinGameCard(
                             tournament: i,
                             controller: controller,
-                          );
-                        }).toList());
-                  }),
-                
-              ),
-            ],
-          );
+                          ),
+                        );
+                      }).toList(),
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...controller.tournaments.allTournaments.map((i) {
+                        return JoinGameCard(
+                          tournament: i,
+                          controller: controller,
+                        );
+                      }).toList(),
+                    ],
+                  ),
+                ),
+              ],
+            ))
+          ]);
         },
       ),
     );
