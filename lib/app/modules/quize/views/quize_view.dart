@@ -6,6 +6,7 @@ import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/quize/views/components/game_end.dart';
 import 'package:quizzes/app/modules/quize/views/components/mcq_answers.dart';
 import 'package:quizzes/app/modules/quize/views/components/true_false_answers.dart';
+import 'package:quizzes/app/routes/app_pages.dart';
 import 'package:quizzes/app/utils/resources/color_manager.dart';
 
 import '../controllers/quize_controller.dart';
@@ -48,7 +49,7 @@ class QuizeView extends GetView<QuizeController> {
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 64.0, vertical: 16.0),
+                          horizontal: 20.0, vertical: 10.0),
                       margin: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: ColorManager.white,
@@ -76,7 +77,17 @@ class QuizeView extends GetView<QuizeController> {
                         fontSize: 32,
                       ),
                     ),
-                    Spacer(),
+                    //  Spacer(),
+                    ElevatedButton(
+                      child: Text(
+                        'view Rank',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Get.toNamed(Routes.RANKING,
+                            arguments: controller.tournament);
+                      },
+                    ),
                     Container(
                       margin: EdgeInsets.only(left: 25, right: 25),
                       child: Row(
@@ -96,21 +107,6 @@ class QuizeView extends GetView<QuizeController> {
                     )
                   ],
                 ),
-                // Container(
-                //   alignment: Alignment.topLeft,
-                //   margin: EdgeInsets.all(15),
-                //   child: Center(
-                //     child: Container(
-                //       decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(25),
-                //       ),
-                //       child: Image.network(
-                //         quiz.imgurl,
-                //       ),
-                //       height: 200,
-                //     ),
-                //   ),
-                // ),
                 Spacer(),
                 Center(
                   child: Container(
@@ -151,7 +147,7 @@ class QuizeView extends GetView<QuizeController> {
                 ),
                 Center(
                   child: Text(
-                    "Score: ${controller.score.value}/5",
+                    "Score: ${controller.score.value}",
                     style: TextStyle(
                         color: Colors.yellow,
                         fontSize: 18,

@@ -6,6 +6,7 @@ import 'package:quizzes/app/components/page/app_page.dart';
 import 'package:quizzes/app/modules/all_tournaments/views/components/game_card.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/all_tournaments_controller.dart';
 
 class AllTournamentsView extends GetView<AllTournamentsController> {
@@ -20,18 +21,23 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
               child: Lottie.asset("assets/images/Athlete.json"),
             );
           }
-          return Center(
-            child: LayoutBuilder(builder: (context, constraints) {
-              return ResponsiveGridList(
-                  desiredItemWidth: 200,
-                  minSpacing: 20,
-                  children: controller.tournaments.allTournaments.map((i) {
-                    return JoinGameCard(
-                      tournament: i,
-                      controller: controller,
-                    );
-                  }).toList());
-            }),
+          return Column(
+            children: [
+              Center(
+                  child: LayoutBuilder(builder: (context, constraints) {
+                    return ResponsiveGridList(
+                        desiredItemWidth: 200,
+                        minSpacing: 20,
+                        children: controller.tournaments.allTournaments.map((i) {
+                          return JoinGameCard(
+                            tournament: i,
+                            controller: controller,
+                          );
+                        }).toList());
+                  }),
+                
+              ),
+            ],
           );
         },
       ),
