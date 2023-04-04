@@ -44,9 +44,19 @@ class QuizeController extends GetxController {
     if (choice ==
         tournamentQuize.value?.questions.questions[current.value].answer) {
       score.value++;
-      showMyDialogRight(ctx);
+      // showMyDialogRight(ctx);
       final snackbar = SnackBar(
-        content: Text('Correct Answer'),
+        content: Row(
+          children: [
+            Image.asset(
+              "assets/images/like.png",
+              width: 70,
+              height: 70,
+            ),
+            Spacer(),
+            Text('Correct Answer'),
+          ],
+        ),
         duration: Duration(milliseconds: 500),
         backgroundColor: Colors.green,
       );
@@ -57,9 +67,19 @@ class QuizeController extends GetxController {
       update();
     } else {
       final snackbar = SnackBar(
-        content: Text('Wrong Answer'),
+        content: Row(
+          children: [
+            Image.asset(
+              "assets/images/sad.jpg",
+              width: 70,
+              height: 70,
+            ),
+            Spacer(),
+            Text('Wrong Answer'),
+          ],
+        ),
         duration: Duration(milliseconds: 500),
-        backgroundColor: Colors.red,
+        backgroundColor: Color.fromARGB(255, 237, 159, 147),
       );
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
       isCurrentAnswerCorrect.value = false;
@@ -76,10 +96,20 @@ class QuizeController extends GetxController {
     if (choice ==
         tournamentQuize.value?.questions.questions[current.value].trueNum) {
       score.value++;
-      showMyDialogRight(ctx);
+      // showMyDialogRight(ctx);
 
       final snackbar = SnackBar(
-        content: Text('Correct Answer'),
+        content: Row(
+          children: [
+            Image.asset(
+              "assets/images/like.png",
+              width: 70,
+              height: 70,
+            ),
+            Spacer(),
+            Text('Correct Answer'),
+          ],
+        ),
         duration: Duration(milliseconds: 500),
         backgroundColor: Colors.green,
       );
@@ -89,9 +119,19 @@ class QuizeController extends GetxController {
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
     } else {
       final snackbar = SnackBar(
-        content: Text('Wrong Answer'),
+        content: Row(
+          children: [
+            Image.asset(
+              "assets/images/sad.jpg",
+              width: 70,
+              height: 70,
+            ),
+            Spacer(),
+            Text('Wrong Answer'),
+          ],
+        ),
         duration: Duration(milliseconds: 500),
-        backgroundColor: Colors.red,
+        backgroundColor: Color.fromARGB(255, 237, 159, 147),
       );
       ScaffoldMessenger.of(ctx).showSnackBar(snackbar);
       isCurrentAnswerCorrect.value = false;
@@ -126,7 +166,11 @@ class QuizeController extends GetxController {
         return AlertDialog(
           title: Column(
             children: [
-              Image.asset("assets/images/smile.png"),
+              Image.asset(
+                "assets/images/smile.png",
+                width: 70,
+                height: 70,
+              ),
               Text(
                 'Congratulations!!',
                 style: TextStyle(
