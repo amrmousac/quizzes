@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:quizzes/app/components/app_text.dart';
 import 'package:quizzes/app/modules/home/views/components/game_card.dart';
 import 'package:quizzes/app/modules/home/views/components/section_header.dart';
 import 'package:quizzes/app/modules/play/views/components/game_card.dart';
@@ -35,6 +36,18 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(
                       height: 32.0,
                     ),
+                    if (controller.gameTournaments.length == 0)
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.ALL_TOURNAMENTS);
+                        },
+                        child: AppText(
+                          "See all Tournament",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     if (controller.gameTournaments.length != 0)
                       SectionHeader(
                         title: "Games",

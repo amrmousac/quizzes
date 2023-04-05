@@ -65,7 +65,8 @@ class RegisterationController extends GetxController {
         signupForm.control('email').value,
         signupForm.control('password').value);
     if (res['status'] == 200) {
-      Get.toNamed(Routes.HOME);
+      isLogin.value = true;
+      // Get.toNamed(Routes.HOME);
     } else {
       errorMessage.value = res['message'];
     }

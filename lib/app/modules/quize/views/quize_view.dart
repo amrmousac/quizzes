@@ -118,21 +118,26 @@ class QuizeView extends GetView<QuizeController> {
                         ],
                       ),
                       Spacer(),
-                      if (question.image != null)
+                      if (question.image != null ||
+                          question.image != "undefined")
                         Container(
+                          margin: EdgeInsets.all(8.0),
                           alignment: Alignment.center,
-                          height: 350,
+                          height: 200,
                           clipBehavior: Clip.antiAlias,
-                          padding: EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                          child: Image.network(
-                            question.image!,
-                            fit: BoxFit.cover,
-                            height: 350,
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                  question.image!,
+                                )),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
                       Center(
                         child: Container(
                           padding: EdgeInsets.symmetric(

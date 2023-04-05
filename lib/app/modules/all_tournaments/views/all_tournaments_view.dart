@@ -19,7 +19,8 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
         () {
           if (controller.tournaments.allTournaments.isEmpty) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Lottie.asset("assets/images/smile.json",
+                  width: 1000, height: 1000),
             );
           }
           return Column(children: [
