@@ -31,6 +31,8 @@ class JoinGameCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           gradient: LinearGradient(
             colors: color,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         height: 100,

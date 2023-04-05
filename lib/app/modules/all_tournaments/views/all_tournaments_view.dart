@@ -19,7 +19,7 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
         () {
           if (controller.tournaments.allTournaments.isEmpty) {
             return Center(
-              child: Lottie.asset("assets/images/Athlete.json"),
+              child: CircularProgressIndicator(),
             );
           }
           return Column(children: [
@@ -69,15 +69,10 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
                                           .tournaments.myTournaments[index]);
                                 },
                                 child: JoinGameCard(
-                                  color: (index % 2 == 0)
-                                      ? [
-                                          Color.fromARGB(255, 237, 159, 147),
-                                          ColorManager.secondary,
-                                        ]
-                                      : [
-                                          ColorManager.secondary,
-                                          Color.fromARGB(255, 238, 186, 179)
-                                        ],
+                                  color: [
+                                    ColorManager.secondary,
+                                    Color.fromARGB(255, 238, 186, 179)
+                                  ],
                                   tournament: controller
                                       .tournaments.myTournaments[index],
                                   controller: controller,
@@ -91,26 +86,14 @@ class AllTournamentsView extends GetView<AllTournamentsController> {
                     children: [
                       ...List.generate(
                           controller.tournaments.allTournaments.length,
-                          (index) => InkWell(
-                                onTap: () {
-                                  Get.toNamed(Routes.RANKING,
-                                      arguments: controller
-                                          .tournaments.allTournaments[index]);
-                                },
-                                child: JoinGameCard(
-                                  color: (index % 2 == 0)
-                                      ? [
-                                          ColorManager.primary,
-                                          ColorManager.secondary,
-                                        ]
-                                      : [
-                                          ColorManager.secondary,
-                                          ColorManager.primary
-                                        ],
-                                  tournament: controller
-                                      .tournaments.allTournaments[index],
-                                  controller: controller,
-                                ),
+                          (index) => JoinGameCard(
+                                color: [
+                                  ColorManager.secondary,
+                                  Color.fromARGB(255, 238, 186, 179)
+                                ],
+                                tournament: controller
+                                    .tournaments.allTournaments[index],
+                                controller: controller,
                               ))
                     ],
                   ),

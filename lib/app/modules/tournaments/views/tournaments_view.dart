@@ -15,7 +15,7 @@ class TournamentsView extends GetView<TournamentsController> {
         () {
           if (controller.tournaments.myTournaments.isEmpty) {
             return Center(
-              child: Lottie.asset("assets/images/Athlete.json"),
+              child: CircularProgressIndicator(),
             );
           }
           controller.tournaments.myTournaments.refresh();

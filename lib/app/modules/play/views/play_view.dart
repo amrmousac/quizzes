@@ -27,7 +27,7 @@ class PlayView extends GetView<PlayController> {
         () {
           if (controller.tournaments.isEmpty) {
             return Center(
-              child: Lottie.asset("assets/images/Athlete.json"),
+              child: CircularProgressIndicator(),
             );
           }
           controller.tournaments.refresh();

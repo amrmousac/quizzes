@@ -19,7 +19,7 @@ class GroupsView extends GetView<GroupsController> {
         () {
           if (controller.groups.isEmpty) {
             return Center(
-              child: Lottie.asset("assets/images/Athlete.json"),
+              child: CircularProgressIndicator(),
             );
           }
           controller.groups.refresh();

@@ -18,6 +18,8 @@ class RecordCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         gradient: isMe
             ? LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
                 colors: [
                   ColorManager.primary,
                   ColorManager.secondary,
